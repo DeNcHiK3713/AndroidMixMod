@@ -15,7 +15,7 @@ This is just my vision of what version 5 should be like.
 - Init() from Setup migrated to Menu for convenience
 - And64InlineHook and Substrate libs removed (replaced by Dobby)
 - get_device_api_level_inlines.h removed (replaced by JNI get_api_sdk)
-
+-
 - Java:
 - CrashHandler.java updated:
 - - more debug info
@@ -23,7 +23,7 @@ This is just my vision of what version 5 should be like.
 - - clear old crash logs (keep last 5)
 - Main.java minor changes
 - Menu.java minor changes
-
+-
 - Project settings:
 - Updated to SDK 36
 - Upgraded gradle
