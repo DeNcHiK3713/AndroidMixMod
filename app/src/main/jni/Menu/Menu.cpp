@@ -16,10 +16,10 @@ void Init(JNIEnv *env, jobject thiz, jobject ctx, jobject title, jobject subtitl
            ctx,
            OBFUSCATE("Welcome to your mod menu"),
            OBFUSCATE("Thanks for the installation and call to action"),
-           OBFUSCATE("Visit"),
+           OBFUSCATE("Visit"), // set nullptr if btn-link is not needed
            OBFUSCATE("Close"),
            3, // set 0 if auto-close is not needed
-           OBFUSCATE("https://github.com/LGLTeam"));
+           OBFUSCATE("https://github.com/LGLTeam")); // set nullptr if btn-link is not needed
 
     //Toast Example
     Toast(env, ctx, OBFUSCATE("Modded by YOU"), ToastLength::LENGTH_LONG);
