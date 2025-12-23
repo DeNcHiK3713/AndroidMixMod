@@ -9,7 +9,7 @@ namespace ToastLength {
     inline const int LENGTH_SHORT = 0;
 }
 
-void setDialog(jobject ctx, JNIEnv *env, const char *title, const char *msg);
+void Dialog(JNIEnv *env, jobject context, const char *title, const char *message, const char *openBtn, const char *closeBtn, int sec, const char *url);
 
 void Toast(JNIEnv *env, jobject thiz, const char *text, int length);
 

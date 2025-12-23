@@ -12,27 +12,17 @@ void Init(JNIEnv *env, jobject thiz, jobject ctx, jobject title, jobject subtitl
                                      "</marquee></b>"));
 
     //Dialog Example
-    //setDialog(ctx,env,OBFUSCATE("Title"),OBFUSCATE("Message Example"));
+    Dialog(env,
+           ctx,
+           OBFUSCATE("Welcome to your mod menu"),
+           OBFUSCATE("Thanks for the installation and call to action"),
+           OBFUSCATE("Visit"),
+           OBFUSCATE("Close"),
+           3, // set 0 if auto-close is not needed
+           OBFUSCATE("https://github.com/LGLTeam"));
 
     //Toast Example
     Toast(env, ctx, OBFUSCATE("Modded by YOU"), ToastLength::LENGTH_LONG);
-}
-
-//Big letter cause crash
-void setText(JNIEnv *env, jobject obj, const char* text){
-    //https://stackoverflow.com/a/33627640/3763113
-    //A little JNI calls here. You really really need a great knowledge if you want to play with JNI stuff
-    //Html.fromHtml("");
-    jclass html = (*env).FindClass(OBFUSCATE("android/text/Html"));
-    jmethodID fromHtml = (*env).GetStaticMethodID(html, OBFUSCATE("fromHtml"), OBFUSCATE("(Ljava/lang/String;)Landroid/text/Spanned;"));
-
-    //setText("");
-    jclass textView = (*env).FindClass(OBFUSCATE("android/widget/TextView"));
-    jmethodID setText = (*env).GetMethodID(textView, OBFUSCATE("setText"), OBFUSCATE("(Ljava/lang/CharSequence;)V"));
-
-    //Java string
-    jstring jstr = (*env).NewStringUTF(text);
-    (*env).CallVoidMethod(obj, setText,  (*env).CallStaticObjectMethod(html, fromHtml, jstr));
 }
 
 jstring Icon(JNIEnv *env, jobject thiz) {
