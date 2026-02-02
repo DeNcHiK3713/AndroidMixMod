@@ -8,7 +8,7 @@ import android.util.Log;
 public class MainActivity extends Activity {
 
     //Only if you have changed MainActivity to yours and you wanna call game's activity.
-    public String GameActivity = "com.unity3d.player.UnityPlayerActivity";
+    public String GameActivity = "com.blizzard.wtcg.hearthstone.HearthstoneApplication";
     public boolean hasLaunched = false;
 
     //To call onCreate, please refer to README.md

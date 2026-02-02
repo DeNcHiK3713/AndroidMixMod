@@ -702,6 +702,13 @@ public class Menu {
         linLayout.addView(button);
     }
 
+    public void ReloadFeatures() {
+        mods.removeAllViews();
+        featureList(GetFeatureList(), mods);
+        mSettings.removeAllViews();
+        featureList(SettingsList(), mSettings);
+    }
+
     private void Spinner(LinearLayout linLayout, final int featNum, final String featName, final String list) {
         Log.d(TAG, "spinner " + featNum + " " + featName + " " + list);
         final List<String> lists = new LinkedList<>(Arrays.asList(list.split(",")));

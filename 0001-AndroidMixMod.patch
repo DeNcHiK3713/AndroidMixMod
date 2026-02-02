@@ -1,0 +1,63 @@
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -64 +64,3 @@
++    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+     <application android:allowBackup="true" android:appCategory="game" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:dataExtractionRules="@xml/appsflyer_data_extraction_rules" android:enableOnBackInvokedCallback="true" android:extractNativeLibs="true" android:fullBackupContent="@xml/appsflyer_backup_rules" android:icon="@mipmap/app_icon" android:label="@string/app_name" android:largeHeap="true" android:name="com.blizzard.wtcg.hearthstone.HearthstoneApplication" android:networkSecurityConfig="@xml/network_security_config" android:roundIcon="@mipmap/app_icon_round" android:supportsRtl="true" android:usesCleartextTraffic="true">
++        <service android:name="com.android.support.Launcher" android:enabled="true" android:exported="false" android:stopWithTask="true"/>
+--- a/assets/bin/Data/boot.config
++++ b/assets/bin/Data/boot.config
+@@ -5 +5,2 @@
+-androidRenderOutsideSafeArea=0
++androidRenderOutsideSafeAre0=0
++androidRenderOutsideSafeArea=1
+--- a/smali/com/blizzard/mobile/auth/internal/packagevalidator/BasePackageValidator.smali
++++ b/smali/com/blizzard/mobile/auth/internal/packagevalidator/BasePackageValidator.smali
+@@ -276,6 +276,6 @@
+     const-string v4, "F7:83:85:9E:ED:6E:4A:40:A4:EB:D0:20:57:8D:36:E0:0A:62:CF:9C:F2:7D:A3:95:F7:7D:1D:73:A6:A9:A4:1F"
+ 
+     invoke-virtual {v4, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+-    move-result v3
++    const/4 v3, 0x1
+ 
+--- a/smali/com/blizzard/wtcg/hearthstone/FileUtils.smali
++++ b/smali/com/blizzard/wtcg/hearthstone/FileUtils.smali
+@@ -1753,3 +1753,19 @@
+ .method public static GetInternalFilesDir()Ljava/io/File;
+-    .locals 1
++    .locals 2
++
++    invoke-static {}, Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;->getInstance()Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;->getApplicationContext()Landroid/content/Context;
++
++    move-result-object v0
++
++    const/4 v1, 0x0
++
++    invoke-virtual {v0, v1}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
++
++    move-result-object v0
++
++    if-nez v0, :cond_0
+ 
+@@ -1782,6 +1782,7 @@
+ 
+     move-result-object v0
+ 
++    :cond_0
+     return-object v0
+ .end method
+ 
+--- a/smali/com/blizzard/wtcg/hearthstone/HearthstoneActivity.smali
++++ b/smali/com/blizzard/wtcg/hearthstone/HearthstoneActivity.smali
+@@ -610,3 +610,7 @@
+ .method public onCreate(Landroid/os/Bundle;)V
+     .locals 2
++    #### MixMod Start ####
++    invoke-static {p0}, Lcom/android/support/Main;->Start(Landroid/content/Context;)V
++    ####  MixMod End  ####
++
+ 

@@ -1,0 +1,608 @@
+[
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "HearthstoneApplication_Awake_Offset",
+    "Name": "Hearthstone.HearthstoneApplication$$Awake"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey_Offset",
+    "Name": "Method$Blizzard.T5.Core.Map<int, SharedPlayerInfo>.ContainsKey()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item_Offset",
+    "Name": "Method$Blizzard.T5.Core.Map<int, SharedPlayerInfo>.get_Item()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "RemoteActionHandler_CanReceiveEnemyEmote_Offset",
+    "Name": "RemoteActionHandler$$CanReceiveEnemyEmote"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "EnemyEmoteHandler_Get_Offset",
+    "Name": "EnemyEmoteHandler$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "Blizzard_T5_Core_Map_int_bool_set_Item_Offset",
+    "Name": "Method$Blizzard.T5.Core.Map<int, bool>.set_Item()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UnityEngine_Time_get_time_Offset",
+    "Name": "UnityEngine.Time$$get_time"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameMgr_Get_Offset",
+    "Name": "GameMgr$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameMgr_IsBattlegrounds_Offset",
+    "Name": "GameMgr$$IsBattlegrounds"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameState_Get_Offset",
+    "Name": "GameState$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameState_IsGameCreatedOrCreating_Offset",
+    "Name": "GameState$$IsGameCreatedOrCreating"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameState_GetOpposingSidePlayer_Offset",
+    "Name": "GameState$$GetOpposingSidePlayer"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameState_GetPlayerInfoMap_Offset",
+    "Name": "GameState$$GetPlayerInfoMap"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Blizzard_T5_Core_Map_int_object_ContainsKey_Offset",
+    "Name": "Blizzard.T5.Core.Map<int, object>$$ContainsKey"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Blizzard_T5_Core_Map_int_object_get_Item_Offset",
+    "Name": "Blizzard.T5.Core.Map<int, object>$$get_Item"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Entity_IsControlledByFriendlySidePlayer_Offset",
+    "Name": "Entity$$IsControlledByFriendlySidePlayer"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Entity_GetController_Offset",
+    "Name": "Entity$$GetController"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "System_String_IsNullOrEmpty_Offset",
+    "Name": "System.String$$IsNullOrEmpty"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Network_Get_Offset",
+    "Name": "Network$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Network_SimulateUncleanDisconnectFromGameServer_Offset",
+    "Name": "Network$$SimulateUncleanDisconnectFromGameServer"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "BnetPresenceMgr_Get_Offset",
+    "Name": "BnetPresenceMgr$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "BnetPresenceMgr_GetPlayer_Offset",
+    "Name": "BnetPresenceMgr$$GetPlayer"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "BnetPlayer_GetBattleTag_Offset",
+    "Name": "BnetPlayer$$GetBattleTag"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "BnetBattleTag_GetString_Offset",
+    "Name": "BnetBattleTag$$GetString"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "ClipboardUtils_CopyToClipboard_Offset",
+    "Name": "ClipboardUtils$$CopyToClipboard"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UIStatus_Get_Offset",
+    "Name": "UIStatus$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UIStatus_AddInfo_Offset",
+    "Name": "UIStatus$$AddInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "HistoryManager_Get_Offset",
+    "Name": "HistoryManager$$Get"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "HistoryManager_GetCurrentBigCard_Offset",
+    "Name": "HistoryManager$$GetCurrentBigCard"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "EntityBase_GetTag_Offset",
+    "Name": "EntityBase$$GetTag"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "SocialToastMgr_AddToast_Offset",
+    "Signature": "void SocialToastMgr__AddToast (SocialToastMgr_o* __this, int32_t blocker, System_String_o* textArg, int32_t toastType, float displayTime, bool playSound, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Entity_GetPremiumType_Offset",
+    "Name": "Entity$$GetPremiumType"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Gameplay_OnCreateGame_Offset",
+    "Name": "Gameplay$$OnCreateGame"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "PlayerLeaderboardManager_SetNextOpponent_Offset",
+    "Name": "PlayerLeaderboardManager$$SetNextOpponent"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "PlayerLeaderboardManager_SetCurrentOpponent_Offset",
+    "Name": "PlayerLeaderboardManager$$SetCurrentOpponent"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "PlayerLeaderboardCard_NotifyMousedOver_Offset",
+    "Name": "PlayerLeaderboardCard$$NotifyMousedOver"
+  },
+  {
+    "$type": "Generator.OffsetLines.ReplaceMethodPatch, Generator",
+    "Text": "MatchingQueueTab_Update_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "MatchingQueueTab_Update_Offset",
+      "Name": "MatchingQueueTab$$Update"
+    },
+    "Search": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Time_get_deltaTime_Offset",
+      "Name": "UnityEngine.Time$$get_deltaTime"
+    },
+    "Replace": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Time_get_unscaledDeltaTime_Offset",
+      "Name": "UnityEngine.Time$$get_unscaledDeltaTime"
+    },
+    "GetThunkFrom": {
+      "$type": "Generator.OffsetLines.RegexLine, Generator",
+      "Section": 0,
+      "Text": "BasicScene_NotifySceneLoadedWhenReady_Offset",
+      "Regex": "BasicScene\\.<NotifySceneLoadedWhenReady>d__\\d+\\$\\$MoveNext"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.ReplaceMethodPatch, Generator",
+    "Text": "ThinkEmoteManager_Update_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "ThinkEmoteManager_Update_Offset",
+      "Name": "ThinkEmoteManager$$Update"
+    },
+    "Search": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Time_get_deltaTime_Offset",
+      "Name": "UnityEngine.Time$$get_deltaTime"
+    },
+    "Replace": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Time_get_unscaledDeltaTime_Offset",
+      "Name": "UnityEngine.Time$$get_unscaledDeltaTime"
+    },
+    "GetThunkFrom": {
+      "$type": "Generator.OffsetLines.RegexLine, Generator",
+      "Section": 0,
+      "Text": "LettuceScene_NotifySceneLoadedWhenReady_Offset",
+      "Regex": "LettuceScene\\.<NotifySceneLoadedWhenReady>d__\\d+\\$\\$MoveNext"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "ThinkEmoteManager_Update_Offset",
+    "Name": "ThinkEmoteManager$$Update"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "ThinkEmoteManager_PlayThinkEmote_Offset",
+    "Name": "ThinkEmoteManager$$PlayThinkEmote"
+  },
+  {
+    "$type": "Generator.OffsetLines.NeverBranchPatch, Generator",
+    "Text": "PlatformSettings_EmulateMobileDevice_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "PlatformSettings_EmulateMobileDevice_Offset",
+      "Name": "PlatformSettings$$EmulateMobileDevice"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "HearthstoneApplication_IsPublic_Offset",
+      "Name": "Hearthstone.HearthstoneApplication$$IsPublic"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
+    "Text": "MulliganManager_HandleGameStart_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "MulliganManager_HandleGameStart_Offset",
+      "Name": "MulliganManager$$HandleGameStart"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Cheats_ShouldSkipMulligan_Offset",
+      "Name": "Cheats$$ShouldSkipMulligan"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
+    "Text": "EmoteHandler_EmoteSpamBlocked_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "EmoteHandler_EmoteSpamBlocked_Offset",
+      "Name": "EmoteHandler$$EmoteSpamBlocked"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "GameMgr_IsFriendly_Offset",
+      "Name": "GameMgr$$IsFriendly"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
+    "Text": "EmoteHandler_HandleInput_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "EmoteHandler_HandleInput_Offset",
+      "Name": "EmoteHandler$$HandleInput"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "EntityBase_HasTag_Offset",
+      "Name": "EntityBase$$HasTag"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.ReplaceMethodArgumentPatch, Generator",
+    "Text": "EnemyEmoteHandler_Awake_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "EnemyEmoteHandler_Awake_Offset",
+      "Name": "EnemyEmoteHandler$$Awake"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "Blizzard_T5_Core_Map_int_bool_Add_Offset",
+      "Name": "Blizzard.T5.Core.Map<int, bool>$$Add"
+    },
+	"Argument": 2,
+	"Value": "#1"
+  },
+  {
+    "$type": "Generator.OffsetLines.ReplaceMethodResultPatch, Generator",
+    "Text": "NameBanner_Initialize_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "NameBanner_Initialize_Offset",
+      "Name": "NameBanner$$Initialize"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "GameUtils_IsGameTypeRanked_Offset",
+      "Name": "GameUtils$$IsGameTypeRanked"
+    },
+	"Value": "#1"
+  },
+  {
+    "$type": "Generator.OffsetLines.AlwaysBranchComparePatch, Generator",
+    "Text": "NameBanner_UpdateMedalWhenReady_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.RegexLine, Generator",
+      "Section": 0,
+      "Text": "NameBanner_UpdateMedalWhenReady_Offset",
+      "Regex": "NameBanner\\.<UpdateMedalWhenReady>d__\\d+\\$\\$MoveNext"
+    },
+	"Value": "#2"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Time_get_timeScale_Offset",
+    "Name": "UnityEngine.Time$$get_timeScale"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Time_set_timeScale_Offset",
+    "Name": "UnityEngine.Time$$set_timeScale"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameMgr_OnGameSetup_Offset",
+    "Name": "GameMgr$$OnGameSetup"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameMgr_OnGameCanceled_Offset",
+    "Name": "GameMgr$$OnGameCanceled"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "GameMgr_OnGameEnded_Offset",
+    "Name": "GameMgr$$OnGameEnded"
+  },
+  {
+    "$type": "Generator.OffsetLines.MoveNextBreakPatch, Generator",
+    "Text": "TB_BaconShop_HandleGameOverWithTiming_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.RegexLine, Generator",
+      "Section": 0,
+      "Text": "TB_BaconShop_HandleGameOverWithTiming_Offset",
+      "Regex": "TB_BaconShop\\.<HandleGameOverWithTiming>d__\\d+\\$\\$MoveNext"
+    },
+    "CalledMethod": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "PlayerLeaderboardManager_UpdateLayout_Offset",
+      "Name": "PlayerLeaderboardManager$$UpdateLayout"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.MoveNextBreakPatch, Generator",
+    "Text": "TB_BaconShop_PlayBobLineWithoutText_Patch",
+    "Target": {
+      "$type": "Generator.OffsetLines.RegexLine, Generator",
+      "Section": 0,
+      "Text": "TB_BaconShop_PlayBobLineWithoutText_Offset",
+      "Regex": "TB_BaconShop\\.<PlayBobLineWithoutText>d__\\d+\\$\\$MoveNext"
+    }
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Network_GetPlatformBuilder_Offset",
+    "Name": "Network$$GetPlatformBuilder"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UnityEngine_SystemInfo_get_deviceUniqueIdentifier_Offset",
+    "Name": "UnityEngine.SystemInfo$$get_deviceUniqueIdentifier"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "System_Text_StringBuilder_TypeInfo_Offset",
+    "Name": "System.Text.StringBuilder_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Text_StringBuilder_ctor_Offset",
+    "Signature": "void System_Text_StringBuilder___ctor (System_Text_StringBuilder_o* __this, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Text_StringBuilder_AppendString_Offset",
+    "Signature": "System_Text_StringBuilder_o* System_Text_StringBuilder__Append (System_Text_StringBuilder_o* __this, System_String_o* value, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "System_Text_Encoding_get_Default_Offset",
+    "Name": "System.Text.Encoding$$get_Default"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Text_Encoding_GetBytes_Offset",
+    "Signature": "System_Byte_array* System_Text_Encoding__GetBytes (System_Text_Encoding_o* __this, System_String_o* s, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "Crypto_SHA1_Calc_Offset",
+    "Signature": "System_String_o* Crypto_SHA1__Calc (System_String_o* message, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "System_Security_Cryptography_MD5_Create_Offset",
+    "Name": "System.Security.Cryptography.MD5$$Create"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Security_Cryptography_HashAlgorithm_ComputeHash_Offset",
+    "Signature": "System_Byte_array* System_Security_Cryptography_HashAlgorithm__ComputeHash (System_Security_Cryptography_HashAlgorithm_o* __this, System_Byte_array* buffer, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Byte_ToStringFormat_Offset",
+    "Signature": "System_String_o* System_Byte__ToString (uint8_t __this, System_String_o* format, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Guid_ctor_Offset",
+    "Signature": "void System_Guid___ctor (System_Guid_o __this, System_String_o* g, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_String_ToUpper_Offset",
+    "Signature": "System_String_o* System_String__ToUpper (System_String_o* __this, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "System_Xml_XmlConvert_ToGuid_Offset",
+    "Name": "System.Xml.XmlConvert$$ToGuid"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_Guid_ToString_Offset",
+    "Signature": "System_String_o* System_Guid__ToString (System_Guid_o __this, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "object_TypeInfo_Offset",
+    "Name": "object_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "string_TypeInfo_Offset",
+    "Name": "string_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "OSCategory_TypeInfo_Offset",
+    "Name": "OSCategory_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "ScreenCategory_TypeInfo_Offset",
+    "Name": "ScreenCategory_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "System_String_Format_Offset",
+    "Signature": "System_String_o* System_String__Format (System_String_o* format, System_Object_array* args, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Entity_LoadCard_Offset",
+    "Name": "Entity$$LoadCard"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "EntityBase_HasTag_Offset",
+    "Name": "EntityBase$$HasTag"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UpdateUtils_OpenAppStore_Offset",
+    "Name": "UpdateUtils$$OpenAppStore"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "UnityEngine_Application_OpenURL_Offset",
+    "Name": "UnityEngine.Application$$OpenURL"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Localization_GetLocaleName_Offset",
+    "Name": "Localization$$GetLocaleName"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Localization_SetPegLocaleName_Offset",
+    "Name": "Localization$$SetPegLocaleName"
+  }
+]

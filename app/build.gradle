@@ -12,12 +12,13 @@ android {
             //noinspection ChromeOsAbiSupport
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
+        multiDexEnabled false
     }
     android.buildFeatures.buildConfig = true
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+            shrinkResources false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
