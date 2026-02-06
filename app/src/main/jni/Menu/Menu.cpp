@@ -6,7 +6,7 @@ void Init(JNIEnv *env, jobject thiz, jobject ctx, jobject title, jobject subtitl
     setText(env, title, OBFUSCATE("<b>Hearthstone MixMod</b>"));
 
     //Set sub title
-	setText(env, subtitle, OBFUSCATE("<b><marquee><p style=\"font-size:30\">"
+    setText(env, subtitle, OBFUSCATE("<b><marquee><p style=\"font-size:30\">"
                                      "<p style=\"color:green;\">Hearthstone MixMod</p> | "
                                      "https://t.me/HsMixMod | Official telegram channel for updates</p>"
                                      "</marquee></b>"));
