@@ -2,6 +2,8 @@
 #include "Menu/Menu.hpp"
 #include "Utils.hpp"
 
+JavaVM *g_vm;
+
 int RegisterMenu(JNIEnv *env) {
     JNINativeMethod methods[] = {
             {OBFUSCATE("Icon"),            OBFUSCATE(
@@ -55,6 +57,7 @@ int RegisterMain(JNIEnv *env) {
 extern "C"
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
+    g_vm = vm;
     JNIEnv *env;
     vm->GetEnv((void **) &env, JNI_VERSION_1_6);
     if (RegisterMenu(env) != 0)

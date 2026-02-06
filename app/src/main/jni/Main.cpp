@@ -24,7 +24,8 @@
 #endif
 #include "Includes/Source.h"
 
-JNIEnv *gEnv;
+extern JavaVM *g_vm;
+
 std::string language = "enUS";
 bool languageLoaded = false;
 bool useDefaultLanguage = true;
@@ -47,7 +48,6 @@ System_String_o *_deviceName;
 // To learn HTML, go to this page: https://www.w3schools.com/
 
 jobjectArray GetFeatureList(JNIEnv *env, jobject context) {
-    gEnv = env;
     jobjectArray ret;
 
     const char *features[] = {
@@ -90,7 +90,6 @@ jobjectArray GetFeatureList(JNIEnv *env, jobject context) {
 }
 
 jobjectArray SettingsList(JNIEnv *env, jobject activityObject) {
-    gEnv = env;
     jobjectArray ret;
 
     const char *features[] = {
@@ -440,6 +439,49 @@ bool UpdateUtils_OpenAppStore() {
     return true;
 }
 
+void reload_features() {
+    if (g_vm == NULL)
+    {
+        LOGE("g_vm is null");
+        return;
+    }
+
+    JNIEnv *env;
+    int getEnvStat = g_vm->GetEnv((void **)&env, JNI_VERSION_1_6);
+    if (getEnvStat == JNI_EDETACHED) {
+        if (g_vm->AttachCurrentThread((JNIEnv **) &env, NULL) != 0) {
+            LOGE("Failed to attach env");
+            return;
+        }
+    } else if (getEnvStat == JNI_EVERSION) {
+        LOGE("GetEnv: version not supported");
+        return;
+    }
+    if (env == NULL)
+    {
+        LOGE("env is null");
+        return;
+    }
+
+    jclass clazz = env->FindClass("com/android/support/Main");
+    if (clazz == NULL)
+    {
+        LOGE("clazz is null");
+        return;
+    }
+
+    jmethodID reloadFeaturesMethod = env->GetStaticMethodID(clazz, "ReloadFeatures", "()V");
+    if (reloadFeaturesMethod == NULL)
+    {
+        LOGE("reloadFeaturesMethod is null");
+        return;
+    }
+
+    env->CallStaticVoidMethod(clazz, reloadFeaturesMethod);
+    
+    g_vm->DetachCurrentThread();
+}
+
 void Localization_SetPegLocaleName(Localization_o *_this, System_String_o *localeName) {
     il2cpp::Localization_SetPegLocaleName(_this, localeName);
     if (useDefaultLanguage) {
@@ -451,24 +493,7 @@ void Localization_SetPegLocaleName(Localization_o *_this, System_String_o *local
             language = newLanguage;
         }
 
-        if (gEnv == NULL)
-        {
-            return;
-        }
-
-        jclass clazz = gEnv->FindClass("com/android/support/Main");
-        if (clazz == NULL)
-        {
-            return;
-        }
-        
-        jmethodID reloadFeaturesMethod = gEnv->GetStaticMethodID(clazz, "ReloadFeatures", "()V");
-        if (reloadFeaturesMethod == NULL)
-        {
-            return;
-        }
-        
-        gEnv->CallStaticVoidMethod(clazz, reloadFeaturesMethod);
+        std::thread(reload_features).detach();
     }
     languageLoaded = true;
 }
@@ -522,13 +547,13 @@ void setDefaultLanguage() {
     }
 
     il2cpp::il2cpp_thread_detach(thread);
+    std::thread(reload_features).detach();
 }
 
 //Target main lib here
 #define targetLibName OBFUSCATE("libil2cpp.so")
 
 void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featName, jint value, jlong Lvalue, jboolean boolean, jstring text) {
-    gEnv = env;
     auto cstr = text != NULL ? env->GetStringUTFChars(text, 0) : "";
 
     LOGD(OBFUSCATE("Feature name: %d - %s | Value: = %d | Lvalue: = %ld | Bool: = %d | Text: = %s"), featNum, env->GetStringUTFChars(featName, 0), value, Lvalue, boolean, cstr);
@@ -619,25 +644,27 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         break;
     case -10:
         switch (value) {
-        case 0: {
+        case 0:
             useDefaultLanguage = true;
             if (!languageLoaded) {
                 break;
             }
             std::thread(setDefaultLanguage).detach();
             break;
-        }
         case 1:
             useDefaultLanguage = false;
             language = "enUS";
+            std::thread(reload_features).detach();
             break;
         case 2:
             useDefaultLanguage = false;
             language = "ruRU";
+            std::thread(reload_features).detach();
             break;
         case 3:
             useDefaultLanguage = false;
             language = "znCN";
+            std::thread(reload_features).detach();
             break;
         }
         break;
