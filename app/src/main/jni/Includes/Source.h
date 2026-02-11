@@ -65,6 +65,8 @@ namespace il2cpp {
 
     void (*il2cpp_gchandle_free)(uint gchandle);
 
+    Il2CppObject* (*il2cpp_gchandle_get_target)(uint32_t gchandle);
+
     void *(*il2cpp_array_new)(Il2CppClass *klass, size_t length);
 
     Il2CppObject *(*il2cpp_value_box)(Il2CppClass *klass, void *data);

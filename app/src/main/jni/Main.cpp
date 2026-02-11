@@ -23,22 +23,40 @@
 #include "Includes/armeabi-v7a/il2cpp.h"
 #endif
 #include "Includes/Source.h"
+#include <atomic>
+#include <mutex>
 
 extern JavaVM *g_vm;
 
 std::string language = "enUS";
-bool languageLoaded = false;
-bool useDefaultLanguage = true;
-bool timeScaleEnabled = false, timeScaleInGameOnlyEnabled = false, gameStarted = false, emoteSpamBlocker = false, disableThinkEmotes = false, copySelectedBattleTag = false, gameLoaded = false;
-float originalTimeScale = 1, timeScale = 1, m_lastEnemyEmoteTime;
-int emotesBeforeBlock = 0, m_lastPlayerId, m_chainedEnemyEmotes;
-CardState golden, diamond, signature;
-BnetPlayer_o *gameStateCurrentOpponent, *playerLeaderboardManagerCurrentOpponent;
-uint gameStateCurrentOpponent_gchandle = -1, playerLeaderboardManagerCurrentOpponent_gchandle = -1;
-DevicePreset devicePreset = DevicePreset::Default;
-OSCategory _os;
-ScreenCategory _screen;
+std::atomic<bool> languageLoaded{ false };
+std::atomic<bool> useDefaultLanguage{ true };
+std::atomic<bool> timeScaleEnabled{ false };
+std::atomic<bool> timeScaleInGameOnlyEnabled{ false };
+std::atomic<float> timeScale{ 1.0f };
+std::atomic<float> originalTimeScale{ 1.0f };
+std::atomic<bool> gameStarted{ false };
+std::atomic<bool> emoteSpamBlocker{ false };
+std::atomic<bool> disableThinkEmotes{ false };
+std::atomic<bool> copySelectedBattleTag{ false };
+std::atomic<bool> gameLoaded{ false };
+std::atomic<int> emotesBeforeBlock{ 0 };
+std::atomic<CardState> golden{ CardState::All };
+std::atomic<CardState> diamond{ CardState::All };
+std::atomic<CardState> signature{ CardState::All };
+std::atomic<DevicePreset> devicePreset{ DevicePreset::Default };
+std::atomic<OSCategory> _os;
+std::atomic<ScreenCategory> _screen;
+
+
 System_String_o *_deviceName;
+float m_lastEnemyEmoteTime;
+int m_lastPlayerId;
+int m_chainedEnemyEmotes;
+
+std::mutex deviceNameMutex, gameStateCurrentOpponentMutex, playerLeaderboardManagerCurrentOpponentMutex;
+
+uint gameStateCurrentOpponent_gchandle = -1, playerLeaderboardManagerCurrentOpponent_gchandle = -1;
 
 // Do not change or translate the first text unless you know what you are doing
 // Assigning feature numbers is optional. Without it, it will automatically count for you, starting from 0
@@ -229,27 +247,29 @@ void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardDa
 }
 
 void UpdateCurrentOpponent() {
+    std::lock_guard<std::mutex> lock(gameStateCurrentOpponentMutex);
+
     if (gameStateCurrentOpponent_gchandle != -1) {
         il2cpp::il2cpp_gchandle_free(gameStateCurrentOpponent_gchandle);
         gameStateCurrentOpponent_gchandle = -1;
     }
     auto gameState = il2cpp::GameState_Get();
     if (gameState == NULL) {
-        gameStateCurrentOpponent = NULL;
         return;
     }
     auto opposingSidePlayer = il2cpp::GameState_GetOpposingSidePlayer(gameState);
     if (opposingSidePlayer == NULL) {
-        gameStateCurrentOpponent = NULL;
         return;
     }
-    gameStateCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), opposingSidePlayer->fields.m_gameAccountId);
+    auto gameStateCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), opposingSidePlayer->fields.m_gameAccountId);
     if (gameStateCurrentOpponent) {
         gameStateCurrentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(gameStateCurrentOpponent, false);
     }
 }
 
 void UpdateCurrentOpponent(int opponentPlayerId) {
+    std::lock_guard<std::mutex> lock(playerLeaderboardManagerCurrentOpponentMutex);
+
     if (playerLeaderboardManagerCurrentOpponent_gchandle != -1) {
         il2cpp::il2cpp_gchandle_free(playerLeaderboardManagerCurrentOpponent_gchandle);
         playerLeaderboardManagerCurrentOpponent_gchandle = -1;
@@ -257,15 +277,13 @@ void UpdateCurrentOpponent(int opponentPlayerId) {
     auto gameState = il2cpp::GameState_Get();
     auto playerInfoMap = reinterpret_cast<Blizzard_T5_Core_Map_TKey__TValue__o *>(il2cpp::GameState_GetPlayerInfoMap(gameState));
     if (gameState == NULL || !il2cpp::Blizzard_T5_Core_Map_int_object_ContainsKey(playerInfoMap, opponentPlayerId, *il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey)) {
-        playerLeaderboardManagerCurrentOpponent = NULL;
         return;
     }
     auto id = reinterpret_cast<SharedPlayerInfo_o *>(il2cpp::Blizzard_T5_Core_Map_int_object_get_Item(playerInfoMap, opponentPlayerId, *il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item))->fields.m_gameAccountId;
     if (id == NULL) {
-        playerLeaderboardManagerCurrentOpponent = NULL;
         return;
     }
-    playerLeaderboardManagerCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), id);
+    auto playerLeaderboardManagerCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), id);
     if (playerLeaderboardManagerCurrentOpponent) {
         playerLeaderboardManagerCurrentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(playerLeaderboardManagerCurrentOpponent, false);
     }
@@ -419,7 +437,9 @@ PegasusShared_Platform_o *Network_GetPlatformBuilder(Network_o *_this) {
     case DevicePreset::Custom:
         os = _os;
         screen = _screen;
+        deviceNameMutex.lock();
         deviceName = _deviceName;
+        deviceNameMutex.unlock();
         break;
     case DevicePreset::Default:
     default:
@@ -502,11 +522,16 @@ void copyBattleTag() {
     void *thread = il2cpp::il2cpp_thread_attach(il2cpp::il2cpp_domain_get());
 
     BnetPlayer_o *currentOpponent;
+
     if (il2cpp::GameMgr_IsBattlegrounds(il2cpp::GameMgr_Get())) {
-        currentOpponent = playerLeaderboardManagerCurrentOpponent;
+        playerLeaderboardManagerCurrentOpponentMutex.lock();
+        currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(playerLeaderboardManagerCurrentOpponent_gchandle);
+        playerLeaderboardManagerCurrentOpponentMutex.unlock();
     }
     else {
-        currentOpponent = gameStateCurrentOpponent;
+        gameStateCurrentOpponentMutex.lock();
+        currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(gameStateCurrentOpponent_gchandle);
+        gameStateCurrentOpponentMutex.unlock();
     }
 
     if (currentOpponent != NULL) {
@@ -618,7 +643,9 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         _screen = static_cast<ScreenCategory>(value);
         break;
     case 19:
+        deviceNameMutex.lock();
         _deviceName = il2cpp::il2cpp_string_new(cstr);
+        deviceNameMutex.unlock();
         break;
     case 22:
         if (gameLoaded) {
@@ -685,6 +712,7 @@ void hack_thread() {
     il2cpp::il2cpp_thread_detach = reinterpret_cast<void (*)(void *thread)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_detach")));
     il2cpp::il2cpp_gchandle_new = reinterpret_cast<uint(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
     il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(uint gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
+    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(uint32_t gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
 
     il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
     il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
