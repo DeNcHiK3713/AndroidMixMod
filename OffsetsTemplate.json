@@ -542,8 +542,8 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "object_TypeInfo_Offset",
-    "Name": "object_TypeInfo"
+    "Text": "System_String_array_TypeInfo_Offset",
+    "Name": "string[]_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
@@ -566,8 +566,8 @@
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_String_Format_Offset",
-    "Signature": "System_String_o* System_String__Format (System_String_o* format, System_Object_array* args, const MethodInfo* method);"
+    "Text": "System_String_Concat_Offset",
+    "Signature": "System_String_o* System_String__Concat (System_String_array* values, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",

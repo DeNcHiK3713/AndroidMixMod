@@ -372,12 +372,59 @@ System_String_o *GetUniqueDeviceID(OSCategory os, ScreenCategory screen, System_
      * il2cpp::System_Guid_ctor(guid, NULL);
     */
     auto deviceId = il2cpp::UnityEngine_SystemInfo_get_deviceUniqueIdentifier();
-    auto arr = (System_Object_array *)il2cpp::il2cpp_array_new(*il2cpp::object_TypeInfo, 4);
-    arr->m_Items[0] = (Il2CppObject *)deviceId;
-    arr->m_Items[1] = (Il2CppObject *)il2cpp::il2cpp_value_box(*il2cpp::OSCategory_TypeInfo, &os);
-    arr->m_Items[2] = (Il2CppObject *)il2cpp::il2cpp_value_box(*il2cpp::ScreenCategory_TypeInfo, &screen);
-    arr->m_Items[3] = (Il2CppObject *)deviceName;
-    auto str = il2cpp::System_String_Format(u"MixModeD{0}{1}{2}{3}"_SS, arr);
+	
+    System_String_o * osStr;
+	switch (os) {
+    case OSCategory::PC:
+        osStr = u"PC"_SS;
+		break;
+    case OSCategory::Mac:
+        osStr = u"Mac"_SS;
+		break;
+    case OSCategory::iOS:
+        osStr = u"iOS"_SS;
+		break;
+    case OSCategory::Android:
+        osStr = u"Android"_SS;
+		break;
+    default:
+        osStr = u""_SS;
+		break;
+    }
+
+    System_String_o * screenStr;
+	switch (screen) {
+    case ScreenCategory::Phone:
+        screenStr = u"Phone"_SS;
+		break;
+    case ScreenCategory::MiniTablet:
+        screenStr = u"MiniTablet"_SS;
+		break;
+    case ScreenCategory::Tablet:
+        screenStr = u"Tablet"_SS;
+		break;
+    case ScreenCategory::PC:
+        screenStr = u"PC"_SS;
+		break;
+    default:
+        screenStr = u""_SS;
+		break;
+    }
+
+    auto arr = (System_String_array *)il2cpp::il2cpp_array_new_specific(*il2cpp::System_String_array_TypeInfo, 5);
+
+    auto handleArr = il2cpp::il2cpp_gchandle_new((Il2CppObject *)arr, false);
+
+    ARRAY_SETREF(arr, 0, u"MixModeD"_SS);
+    ARRAY_SETREF(arr, 1, deviceId);
+    ARRAY_SETREF(arr, 2, osStr);
+    ARRAY_SETREF(arr, 3, screenStr);
+    ARRAY_SETREF(arr, 4, deviceName);
+
+    auto str = il2cpp::System_String_Concat(arr);
+
+    il2cpp::il2cpp_gchandle_free(handleArr);
+
     switch (os) {
     case OSCategory::PC:
         return il2cpp::Crypto_SHA1_Calc(str);
@@ -450,6 +497,7 @@ PegasusShared_Platform_o *Network_GetPlatformBuilder(Network_o *_this) {
     result->fields._Screen_k__BackingField = static_cast<int>(screen);
     result->fields._Name_k__BackingField = deviceName;
     result->fields._UniqueDeviceIdentifier = GetUniqueDeviceID(os, screen, deviceName);
+    result->fields._Store = 0;
 
     return result;
 }
@@ -717,12 +765,12 @@ void hack_thread() {
     il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
     il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
 
-    il2cpp::il2cpp_array_new = reinterpret_cast<void *(*)(Il2CppClass * klass, size_t length)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_array_new")));
-    il2cpp::il2cpp_value_box = reinterpret_cast<Il2CppObject * (*)(Il2CppClass * klass, void *data)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_value_box")));
+    il2cpp::il2cpp_array_new_specific = reinterpret_cast<void *(*)(Il2CppClass * klass, size_t length)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_array_new_specific")));
+    il2cpp::il2cpp_gc_wbarrier_set_field = reinterpret_cast<void (*)(Il2CppObject *obj, void **targetAddress, void *object)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gc_wbarrier_set_field")));
 
-    il2cpp::System_String_Format = reinterpret_cast<System_String_o * (*)(System_String_o * format, System_Object_array * args)>(getAbsoluteAddress(targetLibName, System_String_Format_Offset));
+    il2cpp::System_String_Concat = reinterpret_cast<System_String_o* (*)(System_String_array* values)>(getAbsoluteAddress(targetLibName, System_String_Concat_Offset));
 
-    il2cpp::object_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, object_TypeInfo_Offset));
+    il2cpp::System_String_array_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_String_array_TypeInfo_Offset));
     il2cpp::OSCategory_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, OSCategory_TypeInfo_Offset));
     il2cpp::ScreenCategory_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, ScreenCategory_TypeInfo_Offset));
 

@@ -3,6 +3,12 @@
 #include <codecvt>
 #include "Offsets.h"
 
+#define ARRAY_SETREF(array, index, value) \
+    do { \
+        (array)->m_Items[index] = (value); \
+        il2cpp::il2cpp_gc_wbarrier_set_field((Il2CppObject*)(array), (void**)&(array)->m_Items[index], (void*)(value)); \
+    } while (0)
+
 #if _MSC_VER
 typedef wchar_t Il2CppChar;
 #elif __has_feature(cxx_unicode_literals)
@@ -67,17 +73,18 @@ namespace il2cpp {
 
     Il2CppObject* (*il2cpp_gchandle_get_target)(uint32_t gchandle);
 
-    void *(*il2cpp_array_new)(Il2CppClass *klass, size_t length);
+    void *(*il2cpp_array_new_specific)(Il2CppClass *arrayTypeInfo, size_t length);
 
-    Il2CppObject *(*il2cpp_value_box)(Il2CppClass *klass, void *data);
+    void (*il2cpp_gc_wbarrier_set_field)(Il2CppObject *obj, void **targetAddress, void *object);
 
-    struct Il2CppClass **object_TypeInfo;
+
+    struct Il2CppClass **System_String_array_TypeInfo;
     struct Il2CppClass **OSCategory_TypeInfo;
     struct Il2CppClass **ScreenCategory_TypeInfo;
 
     System_String_o *(*UnityEngine_SystemInfo_get_deviceUniqueIdentifier)();
 
-    System_String_o *(*System_String_Format)(System_String_o *format, System_Object_array *args);
+    System_String_o *(*System_String_Concat)(System_String_array* values);
 
     struct Il2CppClass **System_Text_StringBuilder_TypeInfo;
 
