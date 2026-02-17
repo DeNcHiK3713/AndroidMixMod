@@ -54,9 +54,9 @@ float m_lastEnemyEmoteTime;
 int m_lastPlayerId;
 int m_chainedEnemyEmotes;
 
-std::mutex deviceNameMutex, gameStateCurrentOpponentMutex, playerLeaderboardManagerCurrentOpponentMutex;
+std::mutex deviceNameMutex, currentOpponentMutex;
 
-uint gameStateCurrentOpponent_gchandle = -1, playerLeaderboardManagerCurrentOpponent_gchandle = -1;
+uint currentOpponent_gchandle = -1;
 
 // Do not change or translate the first text unless you know what you are doing
 // Assigning feature numbers is optional. Without it, it will automatically count for you, starting from 0
@@ -247,11 +247,11 @@ void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardDa
 }
 
 void UpdateCurrentOpponent() {
-    std::lock_guard<std::mutex> lock(gameStateCurrentOpponentMutex);
+    std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
-    if (gameStateCurrentOpponent_gchandle != -1) {
-        il2cpp::il2cpp_gchandle_free(gameStateCurrentOpponent_gchandle);
-        gameStateCurrentOpponent_gchandle = -1;
+    if (currentOpponent_gchandle != -1) {
+        il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
+        currentOpponent_gchandle = -1;
     }
     auto gameState = il2cpp::GameState_Get();
     if (gameState == NULL) {
@@ -261,18 +261,18 @@ void UpdateCurrentOpponent() {
     if (opposingSidePlayer == NULL) {
         return;
     }
-    auto gameStateCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), opposingSidePlayer->fields.m_gameAccountId);
-    if (gameStateCurrentOpponent) {
-        gameStateCurrentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(gameStateCurrentOpponent, false);
+    auto currentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), opposingSidePlayer->fields.m_gameAccountId);
+    if (currentOpponent) {
+        currentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(currentOpponent, false);
     }
 }
 
 void UpdateCurrentOpponent(int opponentPlayerId) {
-    std::lock_guard<std::mutex> lock(playerLeaderboardManagerCurrentOpponentMutex);
+    std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
-    if (playerLeaderboardManagerCurrentOpponent_gchandle != -1) {
-        il2cpp::il2cpp_gchandle_free(playerLeaderboardManagerCurrentOpponent_gchandle);
-        playerLeaderboardManagerCurrentOpponent_gchandle = -1;
+    if (currentOpponent_gchandle != -1) {
+        il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
+        currentOpponent_gchandle = -1;
     }
     auto gameState = il2cpp::GameState_Get();
     auto playerInfoMap = reinterpret_cast<Blizzard_T5_Core_Map_TKey__TValue__o *>(il2cpp::GameState_GetPlayerInfoMap(gameState));
@@ -283,9 +283,9 @@ void UpdateCurrentOpponent(int opponentPlayerId) {
     if (id == NULL) {
         return;
     }
-    auto playerLeaderboardManagerCurrentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), id);
-    if (playerLeaderboardManagerCurrentOpponent) {
-        playerLeaderboardManagerCurrentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(playerLeaderboardManagerCurrentOpponent, false);
+    auto currentOpponent = il2cpp::BnetPresenceMgr_GetPlayer(il2cpp::BnetPresenceMgr_Get(), id);
+    if (currentOpponent) {
+        currentOpponent_gchandle = il2cpp::il2cpp_gchandle_new(currentOpponent, false);
     }
 }
 
@@ -309,24 +309,26 @@ void Gameplay_OnCreateGame(Gameplay_o *_this, int phase, Il2CppObject *userData)
 }
 
 void PlayerLeaderboardManager_SetNextOpponent(PlayerLeaderboardManager_o *_this, int opponentPlayerId) {
+    il2cpp::PlayerLeaderboardManager_SetNextOpponent(_this, opponentPlayerId);
     if (opponentPlayerId != 0) {
         UpdateCurrentOpponent(opponentPlayerId);
-        il2cpp::PlayerLeaderboardManager_SetNextOpponent(_this, opponentPlayerId);
     }
 }
 
 void PlayerLeaderboardManager_SetCurrentOpponent(PlayerLeaderboardManager_o *_this, int opponentPlayerId) {
+    il2cpp::PlayerLeaderboardManager_SetCurrentOpponent(_this, opponentPlayerId);
     if (opponentPlayerId != -1) {
         UpdateCurrentOpponent(opponentPlayerId);
     }
-    il2cpp::PlayerLeaderboardManager_SetCurrentOpponent(_this, opponentPlayerId);
 }
 
 void PlayerLeaderboardCard_NotifyMousedOver(PlayerLeaderboardCard_o *_this) {
-    if (_this->fields.m_mousedOver || _this == il2cpp::HistoryManager_GetCurrentBigCard(il2cpp::HistoryManager_Get())) {
+    auto m_mousedOver = _this->fields.m_mousedOver;
+    il2cpp::PlayerLeaderboardCard_NotifyMousedOver(_this);
+    if (m_mousedOver) {
         return;
     }
-    il2cpp::PlayerLeaderboardCard_NotifyMousedOver(_this);
+
     if (copySelectedBattleTag) {
         auto currentOpponent = GetSelectedOpponent(_this);
         if (currentOpponent != NULL) {
@@ -372,43 +374,43 @@ System_String_o *GetUniqueDeviceID(OSCategory os, ScreenCategory screen, System_
      * il2cpp::System_Guid_ctor(guid, NULL);
     */
     auto deviceId = il2cpp::UnityEngine_SystemInfo_get_deviceUniqueIdentifier();
-	
+
     System_String_o * osStr;
-	switch (os) {
+    switch (os) {
     case OSCategory::PC:
         osStr = u"PC"_SS;
-		break;
+        break;
     case OSCategory::Mac:
         osStr = u"Mac"_SS;
-		break;
+        break;
     case OSCategory::iOS:
         osStr = u"iOS"_SS;
-		break;
+        break;
     case OSCategory::Android:
         osStr = u"Android"_SS;
-		break;
+        break;
     default:
         osStr = u""_SS;
-		break;
+        break;
     }
 
     System_String_o * screenStr;
-	switch (screen) {
+    switch (screen) {
     case ScreenCategory::Phone:
         screenStr = u"Phone"_SS;
-		break;
+        break;
     case ScreenCategory::MiniTablet:
         screenStr = u"MiniTablet"_SS;
-		break;
+        break;
     case ScreenCategory::Tablet:
         screenStr = u"Tablet"_SS;
-		break;
+        break;
     case ScreenCategory::PC:
         screenStr = u"PC"_SS;
-		break;
+        break;
     default:
         screenStr = u""_SS;
-		break;
+        break;
     }
 
     auto arr = (System_String_array *)il2cpp::il2cpp_array_new_specific(*il2cpp::System_String_array_TypeInfo, 5);
@@ -569,18 +571,7 @@ void Localization_SetPegLocaleName(Localization_o *_this, System_String_o *local
 void copyBattleTag() {
     void *thread = il2cpp::il2cpp_thread_attach(il2cpp::il2cpp_domain_get());
 
-    BnetPlayer_o *currentOpponent;
-
-    if (il2cpp::GameMgr_IsBattlegrounds(il2cpp::GameMgr_Get())) {
-        playerLeaderboardManagerCurrentOpponentMutex.lock();
-        currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(playerLeaderboardManagerCurrentOpponent_gchandle);
-        playerLeaderboardManagerCurrentOpponentMutex.unlock();
-    }
-    else {
-        gameStateCurrentOpponentMutex.lock();
-        currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(gameStateCurrentOpponent_gchandle);
-        gameStateCurrentOpponentMutex.unlock();
-    }
+    auto currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(currentOpponent_gchandle);
 
     if (currentOpponent != NULL) {
         BnetBattleTag_o *battleTag = il2cpp::BnetPlayer_GetBattleTag(currentOpponent);
@@ -608,15 +599,14 @@ void setDefaultLanguage() {
     auto locale = il2cpp::Localization_GetLocaleName();
     if (locale == NULL) {
         language = "enUS";
-        return;
-    }
-
-    auto newLanguage = SS_to_str(locale);
-    if (localization.find(newLanguage) == localization.end()) {
-        language = "enUS";
-    }
-    else {
-        language = newLanguage;
+    } else {
+        auto newLanguage = SS_to_str(locale);
+        if (localization.find(newLanguage) == localization.end()) {
+            language = "enUS";
+        }
+        else {
+            language = newLanguage;
+        }
     }
 
     il2cpp::il2cpp_thread_detach(thread);
