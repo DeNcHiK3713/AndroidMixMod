@@ -18,6 +18,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -117,6 +118,8 @@ public class Menu {
     native String[] SettingsList();
 
     native boolean IsGameLibLoaded();
+    
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
 
     //Here we write the code for our Menu
     // Reference: https://www.androidhive.info/2016/11/android-floating-widget-like-facebook-chat-head/
@@ -703,10 +706,17 @@ public class Menu {
     }
 
     public void ReloadFeatures() {
-        mods.removeAllViews();
-        featureList(GetFeatureList(), mods);
-        mSettings.removeAllViews();
-        featureList(SettingsList(), mSettings);
+        mainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Preferences.isReloading = true;
+                mods.removeAllViews();
+                featureList(GetFeatureList(), mods);
+                mSettings.removeAllViews();
+                featureList(SettingsList(), mSettings);
+                Preferences.isReloading = false;
+            }
+        });
     }
 
     private void Spinner(LinearLayout linLayout, final int featNum, final String featName, final String list) {

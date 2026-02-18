@@ -27,6 +27,7 @@
 #include <mutex>
 
 extern JavaVM *g_vm;
+extern jclass g_mainClazz;
 
 std::string language = "enUS";
 std::atomic<bool> languageLoaded{ false };
@@ -519,7 +520,7 @@ void reload_features() {
     JNIEnv *env;
     int getEnvStat = g_vm->GetEnv((void **)&env, JNI_VERSION_1_6);
     if (getEnvStat == JNI_EDETACHED) {
-        if (g_vm->AttachCurrentThread((JNIEnv **) &env, NULL) != 0) {
+        if (g_vm->AttachCurrentThread(&env, NULL) != 0) {
             LOGE("Failed to attach env");
             return;
         }
@@ -533,21 +534,20 @@ void reload_features() {
         return;
     }
 
-    jclass clazz = env->FindClass("com/android/support/Main");
-    if (clazz == NULL)
+    if (g_mainClazz == NULL)
     {
-        LOGE("clazz is null");
+        LOGE("g_mainClazz is null");
         return;
     }
 
-    jmethodID reloadFeaturesMethod = env->GetStaticMethodID(clazz, "ReloadFeatures", "()V");
+    jmethodID reloadFeaturesMethod = env->GetStaticMethodID(g_mainClazz, "ReloadFeatures", "()V");
     if (reloadFeaturesMethod == NULL)
     {
         LOGE("reloadFeaturesMethod is null");
         return;
     }
 
-    env->CallStaticVoidMethod(clazz, reloadFeaturesMethod);
+    env->CallStaticVoidMethod(g_mainClazz, reloadFeaturesMethod);
     
     g_vm->DetachCurrentThread();
 }
@@ -555,15 +555,27 @@ void reload_features() {
 void Localization_SetPegLocaleName(Localization_o *_this, System_String_o *localeName) {
     il2cpp::Localization_SetPegLocaleName(_this, localeName);
     if (useDefaultLanguage) {
+        bool reload = false;
+        
         auto newLanguage = SS_to_str(localeName);
         if (localization.find(newLanguage) == localization.end()) {
-            language = "enUS";
+            if (language != "enUS")
+            {
+                reload = true;
+                language = "enUS";
+            }
         }
         else {
-            language = newLanguage;
+            if (language != newLanguage)
+            {
+                reload = true;
+                language = newLanguage;
+            }
         }
 
-        std::thread(reload_features).detach();
+        if (reload) {
+            std::thread(reload_features).detach();
+        }
     }
     languageLoaded = true;
 }
@@ -595,22 +607,37 @@ void simulateDisconnect() {
 
 void setDefaultLanguage() {
     void *thread = il2cpp::il2cpp_thread_attach(il2cpp::il2cpp_domain_get());
+    bool reload = false;
 
     auto locale = il2cpp::Localization_GetLocaleName();
     if (locale == NULL) {
-        language = "enUS";
+        if (language != "enUS")
+        {
+            reload = true;
+            language = "enUS";
+        }
     } else {
         auto newLanguage = SS_to_str(locale);
         if (localization.find(newLanguage) == localization.end()) {
-            language = "enUS";
+            if (language != "enUS")
+            {
+                reload = true;
+                language = "enUS";
+            }
         }
         else {
-            language = newLanguage;
+            if (language != newLanguage)
+            {
+                reload = true;
+                language = newLanguage;
+            }
         }
     }
 
     il2cpp::il2cpp_thread_detach(thread);
-    std::thread(reload_features).detach();
+    if (reload) {
+        std::thread(reload_features).detach();
+    }
 }
 
 //Target main lib here
@@ -708,6 +735,7 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         PATCH_SWITCH(OBFUSCATE("libunity.so"), Unity_AndroidRenderOutsideSafeArea_Offset, "30", boolean);
         break;
     case -10:
+        bool reload = false;
         switch (value) {
         case 0:
             useDefaultLanguage = true;
@@ -718,19 +746,31 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
             break;
         case 1:
             useDefaultLanguage = false;
-            language = "enUS";
-            std::thread(reload_features).detach();
+            if (language != "enUS")
+            {
+                reload = true;
+                language = "enUS";
+            }
             break;
         case 2:
             useDefaultLanguage = false;
-            language = "ruRU";
-            std::thread(reload_features).detach();
+            if (language != "ruRU")
+            {
+                reload = true;
+                language = "ruRU";
+            }
             break;
         case 3:
             useDefaultLanguage = false;
-            language = "znCN";
-            std::thread(reload_features).detach();
+            if (language != "zhCN")
+            {
+                reload = true;
+                language = "zhCN";
+            }
             break;
+        }
+        if (reload) {
+            std::thread(reload_features).detach();
         }
         break;
     }

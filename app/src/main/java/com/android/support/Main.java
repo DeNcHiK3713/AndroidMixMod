@@ -15,7 +15,7 @@ public class Main {
 
     private static native void CheckOverlayPermission(Context context);
 
-    private static Menu menu;
+    public static Menu menu;
 
     public static void StartWithoutPermission(Context context) {
         CrashHandler.init(context);

@@ -8,17 +8,14 @@ import android.os.IBinder;
 import android.view.View;
 
 public class Launcher extends Service {
-
-    Menu menu;
-
     //When this Class is called the code in this function will be executed
     @Override
     public void onCreate() {
         super.onCreate();
 
-        menu = new Menu(this);
-        menu.SetWindowManagerWindowService();
-        menu.ShowMenu();
+        Main.menu = new Menu(this);
+        Main.menu.SetWindowManagerWindowService();
+        Main.menu.ShowMenu();
 
         //Create a handler for this Class
         final Handler handler = new Handler();
@@ -44,16 +41,16 @@ public class Launcher extends Service {
 
     private void Thread() {
         if (isNotInGame()) {
-            menu.setVisibility(View.INVISIBLE);
+            Main.menu.setVisibility(View.INVISIBLE);
         } else {
-            menu.setVisibility(View.VISIBLE);
+            Main.menu.setVisibility(View.VISIBLE);
         }
     }
 
     //Destroy our View
     public void onDestroy() {
         super.onDestroy();
-        menu.onDestroy();
+        Main.menu.onDestroy();
     }
 
     //Same as above so it wont crash in the background and therefore use alot of Battery life

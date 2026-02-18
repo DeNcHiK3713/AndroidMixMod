@@ -3,6 +3,7 @@
 #include "Utils.hpp"
 
 JavaVM *g_vm;
+jclass g_mainClazz;
 
 int RegisterMenu(JNIEnv *env) {
     JNINativeMethod methods[] = {
@@ -60,6 +61,12 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
     g_vm = vm;
     JNIEnv *env;
     vm->GetEnv((void **) &env, JNI_VERSION_1_6);
+    
+    jclass localClassRef = env->FindClass("com/android/support/Main");
+    if (localClassRef != NULL) {
+        g_mainClazz = (jclass)env->NewGlobalRef(localClassRef);
+    }
+    
     if (RegisterMenu(env) != 0)
         return JNI_ERR;
     if (RegisterPreferences(env) != 0)
