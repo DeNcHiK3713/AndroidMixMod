@@ -126,10 +126,10 @@
     "Name": "BnetPresenceMgr$$Get"
   },
   {
-    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
     "Text": "BnetPresenceMgr_GetPlayer_Offset",
-    "Name": "BnetPresenceMgr$$GetPlayer"
+    "Signature": "BnetPlayer_o* BnetPresenceMgr__GetPlayer (BnetPresenceMgr_o* __this, Blizzard_GameService_SDK_Client_Integration_BnetGameAccountId_o* id, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
@@ -448,6 +448,12 @@
       "Text": "TB_BaconShop_PlayBobLineWithoutText_Offset",
       "Regex": "TB_BaconShop\\.<PlayBobLineWithoutText>d__\\d+\\$\\$MoveNext"
     }
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Network_Update_Offset",
+    "Name": "Network$$Update"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",

@@ -199,6 +199,8 @@ namespace il2cpp {
 
     void (*SocialToastMgr_AddToast)(SocialToastMgr_o *_this, int blocker, System_String_o *textArg, int toastType, float displayTime, bool playSound);
 
+    void (*Network_Update)(Network_o * _this);
+
     PegasusShared_Platform_o *(*Network_GetPlatformBuilder)(Network_o *_this);
 
     System_Guid_o(*System_Xml_XmlConvert_ToGuid)(System_String_o *s);

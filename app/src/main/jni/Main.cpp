@@ -48,6 +48,7 @@ std::atomic<CardState> signature{ CardState::All };
 std::atomic<DevicePreset> devicePreset{ DevicePreset::Default };
 std::atomic<OSCategory> _os;
 std::atomic<ScreenCategory> _screen;
+std::atomic<bool> copyBattleTagQueued{ false };
 
 
 System_String_o *_deviceName;
@@ -581,8 +582,6 @@ void Localization_SetPegLocaleName(Localization_o *_this, System_String_o *local
 }
 
 void copyBattleTag() {
-    void *thread = il2cpp::il2cpp_thread_attach(il2cpp::il2cpp_domain_get());
-
     auto currentOpponent = (BnetPlayer_o *)il2cpp::il2cpp_gchandle_get_target(currentOpponent_gchandle);
 
     if (currentOpponent != NULL) {
@@ -593,8 +592,15 @@ void copyBattleTag() {
             il2cpp::UIStatus_AddInfo(il2cpp::UIStatus_Get(), str);
         }
     }
+}
 
-    il2cpp::il2cpp_thread_detach(thread);
+void Network_Update(Network_o *_this) {
+    il2cpp::Network_Update(_this);
+    
+    if (copyBattleTagQueued) {
+        copyBattleTagQueued = false;
+        copyBattleTag();
+    }
 }
 
 void simulateDisconnect() {
@@ -714,7 +720,7 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         break;
     case 22:
         if (gameLoaded) {
-            std::thread(copyBattleTag).detach();
+            copyBattleTagQueued = true;
         }
         break;
     case 23:
@@ -901,6 +907,7 @@ void hack_thread() {
 
     HOOK(targetLibName, PlayerLeaderboardCard_NotifyMousedOver_Offset, PlayerLeaderboardCard_NotifyMousedOver, il2cpp::PlayerLeaderboardCard_NotifyMousedOver);
 
+    HOOK(targetLibName, Network_Update_Offset, Network_Update, il2cpp::Network_Update);
     HOOK(targetLibName, Network_GetPlatformBuilder_Offset, Network_GetPlatformBuilder, il2cpp::Network_GetPlatformBuilder);
 
     HOOK(targetLibName, UpdateUtils_OpenAppStore_Offset, UpdateUtils_OpenAppStore, il2cpp::UpdateUtils_OpenAppStore);
