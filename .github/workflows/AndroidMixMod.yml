@@ -98,8 +98,8 @@ jobs:
           
       - name: Get Apktool latest release info
         run: |
-          curl --silent https://api.github.com/repos/iBotPeaches/Apktool/releases/latest >> ${{ runner.temp }}/Apktool_release_info.json
-          echo "apktool_asset_id=$(jq -r '.assets | first | .id' ${{ runner.temp }}/Apktool_release_info.json)" >> $GITHUB_ENV
+          curl --silent https://api.bitbucket.org/2.0/repositories/iBotPeaches/apktool/downloads >> ${{ runner.temp }}/Apktool_release_info.json
+          echo "apktool_asset_id=$(jq -r '.values | first | .name' ${{ runner.temp }}/Apktool_release_info.json)" >> $GITHUB_ENV
 
       - name: Cache Apktool
         id: Apktool-cache
@@ -111,7 +111,7 @@ jobs:
       - name: Download Apktool
         if: steps.Apktool-cache.outputs.cache-hit != 'true'
         working-directory: Downloads
-        run: wget $(jq -r '.assets | first | .browser_download_url' ${{ runner.temp }}/Apktool_release_info.json) -O apktool.jar
+        run: wget $(jq -r '.values | first | .links | .self | .href' ${{ runner.temp }}/Apktool_release_info.json) -O apktool.jar
 
       - name: Decompile hearthstone apk
         working-directory: Downloads
