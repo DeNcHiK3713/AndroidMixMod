@@ -111,7 +111,7 @@ jobs:
       - name: Download Apktool
         if: steps.Apktool-cache.outputs.cache-hit != 'true'
         working-directory: Downloads
-        run: wget $(jq -r '.values | first | .links | .self | .href' ${{ runner.temp }}/Apktool_release_info.json) -O apktool.jar
+        run: curl -L -o apktool.jar $(jq -r '.values | first | .links | .self | .href' ${{ runner.temp }}/Apktool_release_info.json)
 
       - name: Decompile hearthstone apk
         working-directory: Downloads
