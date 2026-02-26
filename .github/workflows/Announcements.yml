@@ -1,0 +1,22 @@
+name: Announcements workflow
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Send telegram message on release
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Новая версия: ${{ github.ref_name }}
+            
+            https://github.com/${{ github.repository }}/releases/latest/
+            
+            #Download_APK
