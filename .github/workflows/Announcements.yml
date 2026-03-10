@@ -3,6 +3,11 @@ name: Announcements workflow
 on:
   release:
     types: [published]
+  workflow_run:
+    workflows: [AndroidMixMod workflow]
+    types:
+      - completed
+  workflow_dispatch:
 
 jobs:
   build:
