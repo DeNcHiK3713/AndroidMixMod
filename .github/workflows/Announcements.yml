@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
 
       - name: Send telegram message on release
         uses: appleboy/telegram-action@master
@@ -20,7 +22,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Новая версия: ${{ github.ref_name }}
+            Новая версия: ${{ steps.get-latest-tag.outputs.tag }}
             
             https://github.com/${{ github.repository }}/releases/latest/
             
