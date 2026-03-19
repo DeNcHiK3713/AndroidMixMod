@@ -83,7 +83,7 @@ jobs:
       - name: Download hearthstone apk
         working-directory: Downloads
         run: |
-          ./apkmd download blizzard-entertainment-inc hearthstone -a "arm64-v8a + armeabi-v7a" -t bundle -d "*"
+          ./apkmd download blizzard-entertainment-inc hearthstone -a "arm64-v8a" -t bundle -d "*"
           java -jar APKEditor.jar m -i com.blizzard.wtcg.hearthstone_*.apkm
           old_apk_name=$(ls com.blizzard.wtcg.hearthstone_*.apk)
           apk_name=${old_apk_name%-*}.apk
