@@ -10,11 +10,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  announce:
+    if:  ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
+      - name: Get latest tag
+        run: |
+          echo "latest_tag=$(curl --silent https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')" >> $GITHUB_ENV
 
       - name: Send telegram message on release
         uses: appleboy/telegram-action@master
@@ -22,7 +24,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Новая версия: ${{ steps.get-latest-tag.outputs.tag }}
+            Новая версия: ${{ env.latest_tag }}
             
             https://github.com/${{ github.repository }}/releases/latest/
             
