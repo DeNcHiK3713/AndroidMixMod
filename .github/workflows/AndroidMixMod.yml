@@ -42,7 +42,9 @@ jobs:
           version: 1.0
           
       - name: Make Downloads dir
-        run: mkdir -p Downloads
+        run: |
+          mkdir -p ../Downloads
+          echo "Downloads_Dir=$(realpath ../Downloads/)" >> $GITHUB_ENV
         
       - name: Get apkmd latest release info
         run: |
@@ -53,12 +55,12 @@ jobs:
         id: apkmd-cache
         uses: actions/cache@v5
         with:
-          path: Downloads/apkmd
+          path: ${{ env.Downloads_Dir }}/apkmd
           key: apkmd-${{ runner.os }}-${{ env.apkmd_asset_id }}
 
       - name: Download apkmd
         if: steps.apkmd-cache.outputs.cache-hit != 'true'
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           wget $(jq -r '.assets[] | select(.name == "apkmd") | .browser_download_url' ${{ runner.temp }}/apkmd_release_info.json) -O apkmd
           chmod +x ./apkmd
@@ -72,16 +74,16 @@ jobs:
         id: APKEditor-cache
         uses: actions/cache@v5
         with:
-          path: Downloads/APKEditor.jar
+          path: ${{ env.Downloads_Dir }}/APKEditor.jar
           key: APKEditor-${{ env.APKEditor_asset_id }}
 
       - name: Download APKEditor
         if: steps.APKEditor-cache.outputs.cache-hit != 'true'
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: wget $(jq -r '.assets | first | .browser_download_url' ${{ runner.temp }}/APKEditor_release_info.json) -O APKEditor.jar
           
       - name: Download hearthstone apk
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           ./apkmd download blizzard-entertainment-inc hearthstone -a "arm64-v8a" -t bundle -d "*"
           java -jar APKEditor.jar m -i com.blizzard.wtcg.hearthstone_*.apkm
@@ -105,20 +107,20 @@ jobs:
         id: Apktool-cache
         uses: actions/cache@v5
         with:
-          path: Downloads/apktool.jar
+          path: ${{ env.Downloads_Dir }}/apktool.jar
           key: apktool-${{ env.apktool_asset_id }}
           
       - name: Download Apktool
         if: steps.Apktool-cache.outputs.cache-hit != 'true'
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: curl -L -o apktool.jar $(jq -r '.values | first | .links | .self | .href' ${{ runner.temp }}/Apktool_release_info.json)
 
       - name: Decompile hearthstone apk
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: java -jar apktool.jar d ${{ env.apk_name }} -o ${{ env.apk_folder_name }}
 
       - name: Modify hearthstone apk
-        working-directory: Downloads/${{ env.apk_folder_name }}/
+        working-directory: ${{ env.Downloads_Dir }}/${{ env.apk_folder_name }}/
         run: git apply --unidiff-zero ${{ github.workspace }}/0001-AndroidMixMod.patch
         
       - name: Get Il2CppDumper latest release info
@@ -130,12 +132,12 @@ jobs:
         id: Il2CppDumper-cache
         uses: actions/cache@v5
         with:
-          path: Downloads/Il2CppDumper
+          path: ${{ env.Downloads_Dir }}/Il2CppDumper
           key: Il2CppDumper-${{ runner.os }}-${{ env.Il2CppDumper_asset_id }}
           
       - name: Download Il2CppDumper
         if: steps.Il2CppDumper-cache.outputs.cache-hit != 'true'
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           wget $(jq -r '.assets[] | select(.name | contains("net6") and (contains("win") | not)) | .browser_download_url' ${{ runner.temp }}/Il2CppDumper_release_info.json) -O ./Il2CppDumper.zip
           unzip Il2CppDumper.zip -d Il2CppDumper
@@ -151,19 +153,19 @@ jobs:
         id: Generator-cache
         uses: actions/cache@v5
         with:
-          path: Downloads/Generator
+          path: ${{ env.Downloads_Dir }}/Generator
           key: Generator-${{ runner.os }}-${{ env.Generator_asset_id }}
           
       - name: Download Generator
         if: steps.Generator-cache.outputs.cache-hit != 'true'
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           wget $(jq -r '.assets[] | select(.name == "Generator-net10.0-linux-x64.zip") | .browser_download_url' ${{ runner.temp }}/Generator_release_info.json) -O ./Generator.zip
           unzip Generator.zip -d Generator
           chmod +x ./Generator/Generator
 
       - name: Dump with Il2CppDumper
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           mkdir arm64-v8a armeabi-v7a ${{ github.workspace }}/app/src/main/jni/Includes/arm64-v8a ${{ github.workspace }}/app/src/main/jni/Includes/armeabi-v7a
           dotnet ./Il2CppDumper/Il2CppDumper.dll ./${{ env.apk_folder_name }}/lib/arm64-v8a/libil2cpp.so ./${{ env.apk_folder_name }}/assets/bin/Data/Managed/Metadata/global-metadata.dat ./arm64-v8a/
@@ -174,7 +176,7 @@ jobs:
           sed -i "s/std\(in\|out\|err\)/_std\1/g" ${{ github.workspace }}/app/src/main/jni/Includes/armeabi-v7a/il2cpp.h
 
       - name: Generate offsets
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           search_str="androidRenderOutsideSafeArea"
           echo "#ifdef __aarch64__" > ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
@@ -191,11 +193,11 @@ jobs:
         run: gradle assembleRelease
 
       - name: Decompile apk
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: java -jar apktool.jar d ${{ github.workspace }}/app/build/outputs/apk/release/app-release-unsigned.apk -o MixMod
 
       - name: Modify hearthstone apk
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           smali_dirs=(./${{ env.apk_folder_name }}/smali*)
           last_smali_dir="${smali_dirs[${#smali_dirs[@]}-1]}"
@@ -204,7 +206,7 @@ jobs:
           cp -R ./MixMod/lib/* ./${{ env.apk_folder_name }}/lib/
 
       - name: Recompile hearthstone apk
-        working-directory: Downloads
+        working-directory: ${{ env.Downloads_Dir }}
         run: |
           mkdir -p ${{ github.workspace }}/Release/
           java -jar apktool.jar b ${{ env.apk_folder_name }} -o ${{ github.workspace }}/Release/${{ env.mixmod_apk_name }}
