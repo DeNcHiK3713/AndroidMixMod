@@ -189,6 +189,15 @@ jobs:
           printf "#define Unity_AndroidRenderOutsideSafeArea_Offset \"0x%X\"\n" $((${offset%:${search_str}} + ${#search_str} - 1)) >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
           echo "#endif" >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
 
+      - name: Check offsets
+        working-directory: ${{ github.workspace }}/app/src/main/jni/Includes/
+        run: |
+          empty_offsets=$(grep -n '""\|"0x0"' Offsets.h)
+          if [ $? -eq 0 ]; then
+              echo $empty_offsets
+              exit 1
+          fi
+
       - name: Build with Gradle
         run: gradle assembleRelease
 
