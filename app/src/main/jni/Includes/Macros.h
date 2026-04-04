@@ -242,8 +242,8 @@ void KittyPatchWrapper(const char *libName, const char *relative, std::string da
 
 /// Relative patches allow you to speed up patch creation if you are sure that the offsets within methods rarely change
 void PatchRelativeOffset(const char *libName, const char *rootOffset, const char *addOffset, std::string data, bool apply) {
-    DobbyPatchWrapper(libName, (char *) getRelativeAddress(libName, rootOffset, addOffset), std::move(data), apply);
-    // KittyPatchWrapper(libName, (char *) getRelativeAddress(libName, rootOffset, addOffset), std::move(data), apply);
+    DobbyPatchWrapper(libName, getRelativeAddress(libName, rootOffset, addOffset).c_str(), std::move(data), apply);
+    // KittyPatchWrapper(libName, getRelativeAddress(libName, rootOffset, addOffset).c_str(), std::move(data), apply);
 }
 
 /// relative patch (offset || sym) (offset) (hex || asm)

@@ -15,7 +15,7 @@ uintptr_t getLibraryAddress(const char *library);
 
 void* getAbsoluteAddress(const char *libraryName, const char *relative);
 
-void* getRelativeAddress(const char *libraryName, const char *rootOffset, const char *addOffset);
+std::string getRelativeAddress(const char *libraryName, const char *rootOffset, const char *addOffset);
 
 jboolean isGameLibLoaded(JNIEnv *env, jobject thiz);
 

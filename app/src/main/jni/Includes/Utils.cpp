@@ -56,15 +56,21 @@ void* getAbsAddress(const char *libraryName, uintptr_t relativeAddr) {
     return (void*)(lib_links[libraryName] + relativeAddr);
 }
 
-void* getRelativeAddress(const char *libraryName, const char *rootOffset, const char *addOffset) {
+std::string getRelativeAddress(const char *libraryName, const char *rootOffset, const char *addOffset) {
     uintptr_t offset = str2offset(rootOffset);
     uintptr_t offset2 = str2offset(addOffset);
 
-    if(offset != 0) {
-        return getAbsAddress(libraryName, offset + offset2);
+    uintptr_t result;
+
+    if (offset != 0) {
+        result = offset + offset2;
     } else {
-        return getSymAddress(libraryName, rootOffset, true);
+        result = (uintptr_t)getSymAddress(libraryName, rootOffset, true) + offset2;
     }
+
+    std::stringstream ss;
+    ss << OBFUSCATE("0x") << std::hex << std::uppercase << result;
+    return ss.str();
 }
 
 void* getAbsoluteAddress(const char *libraryName, const char *relative) {
