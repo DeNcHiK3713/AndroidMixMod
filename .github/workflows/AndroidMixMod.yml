@@ -192,8 +192,8 @@ jobs:
       - name: Check offsets
         working-directory: ${{ github.workspace }}/app/src/main/jni/Includes/
         run: |
-          empty_offsets=$(grep -n '""\|"0x0"' Offsets.h)
-          if [ $? -eq 0 ]; then
+          empty_offsets=$(grep -n '""\|"0x0"' Offsets.h) || true
+          if [ -n "$empty_offsets" ]; then
               echo $empty_offsets
               exit 1
           fi
