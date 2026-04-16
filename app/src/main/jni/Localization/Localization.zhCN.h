@@ -9,6 +9,7 @@ locale_map zhCN = localization["zhCN"] = std::unordered_map<int, const char*>{
     { TIMESCALE_ENABLED, "0_Toggle_启用时间刻度" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_时间刻度仅在游戏中" },
     { TIMESCALE, "1_SeekBar_时间刻度值_100_800" },
+    { REDIRECT_TO_CN_SERVER, "26_Toggle_重定向到中国服务器" },
     { SKIP_HERO_INTRO, "2_Toggle_禁用英雄介绍动画" },
     { SHUTUP_BOB, "3_Toggle_禁用鲍勃在战场上的评论" },
     { EXTENDED_BM, "4_Toggle_消除对情感使用的限制" },

@@ -9,6 +9,7 @@ locale_map ruRU = localization["ruRU"] = std::unordered_map<int, const char*>{
     { TIMESCALE_ENABLED, "0_Toggle_Ускорение анимации" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_Ускорение только в игре" },
     { TIMESCALE, "1_SeekBar_Cкорость_100_800" },
+    { REDIRECT_TO_CN_SERVER, "26_Toggle_Перенаправление на китайский сервер" },
     { SKIP_HERO_INTRO, "2_Toggle_Пропуск представления героев" },
     { SHUTUP_BOB, "3_Toggle_Заткнуть боба на полях сражений" },
     { EXTENDED_BM, "4_Toggle_Убрать ограничение на использование эмоций" },

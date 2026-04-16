@@ -610,5 +610,11 @@
     "Section": 0,
     "Text": "Localization_SetPegLocaleName_Offset",
     "Name": "Localization$$SetPegLocaleName"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset",
+    "Name": "Hearthstone.Devices.DeviceLocaleHelper$$GetCurrentRegionId"
   }
 ]

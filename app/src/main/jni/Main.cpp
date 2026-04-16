@@ -49,6 +49,7 @@ std::atomic<DevicePreset> devicePreset{ DevicePreset::Default };
 std::atomic<OSCategory> _os;
 std::atomic<ScreenCategory> _screen;
 std::atomic<bool> copyBattleTagQueued{ false };
+std::atomic<bool> redirectToCNServer{ false };
 
 
 System_String_o *_deviceName;
@@ -75,6 +76,7 @@ jobjectArray GetFeatureList(JNIEnv *env, jobject context) {
             localization[language][TIMESCALE_ENABLED],
             localization[language][TIMESCALE_IN_GAME_ONLY],
             localization[language][TIMESCALE],
+            localization[language][REDIRECT_TO_CN_SERVER],
             "Category_Gameplay",
             localization[language][SKIP_HERO_INTRO],
             localization[language][SHUTUP_BOB],
@@ -181,6 +183,14 @@ void ThinkEmoteManager_Update(ThinkEmoteManager_o *_this) {
     if (!disableThinkEmotes) {
         il2cpp::ThinkEmoteManager_Update(_this);
     }
+}
+
+BnetRegion Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId() {
+    if (redirectToCNServer) {
+        return BnetRegion::REGION_CN;
+    }
+
+    return il2cpp::Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId();
 }
 
 void SocialToastMgr_AddToast(SocialToastMgr_o *_this, int blocker, System_String_o *textArg, int toastType, float displayTime, bool playSound) {
@@ -737,6 +747,9 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
             Time_set_timeScale(originalTimeScale);
         }
         break;
+    case 26:
+        redirectToCNServer = boolean;
+        break;
     case -11:
         PATCH_SWITCH(OBFUSCATE("libunity.so"), Unity_AndroidRenderOutsideSafeArea_Offset, "30", boolean);
         break;
@@ -919,6 +932,8 @@ void hack_thread() {
     PATCH(targetLibName, PlatformSettings_EmulateMobileDevice_Patch_Offset, PlatformSettings_EmulateMobileDevice_Patch_Data);
 
     HOOK(targetLibName, ThinkEmoteManager_Update_Offset, ThinkEmoteManager_Update, il2cpp::ThinkEmoteManager_Update);
+    
+    HOOK(targetLibName, Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset, Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId, il2cpp::Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId);
     
     LOGI(OBFUSCATE("Done"));
 }

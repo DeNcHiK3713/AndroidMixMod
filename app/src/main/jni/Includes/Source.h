@@ -58,6 +58,20 @@ enum class DevicePreset {
     Custom
 };
 
+enum class BnetRegion {
+    REGION_UNINITIALIZED = -1,
+    REGION_UNKNOWN,
+    REGION_US,
+    REGION_EU,
+    REGION_KR,
+    REGION_TW,
+    REGION_CN,
+    REGION_LIVE_VERIFICATION = 40,
+    REGION_PTR_LOC,
+    REGION_DEV = 60,
+    REGION_PTR = 98
+};
+
 namespace il2cpp {
     Il2CppObject *(*il2cpp_object_new)(Il2CppClass *klass);
 
@@ -214,6 +228,8 @@ namespace il2cpp {
     System_String_o *(*Localization_GetLocaleName)();
 
     void (*Localization_SetPegLocaleName)(Localization_o *_this, System_String_o *localeName);
+    
+    BnetRegion (*Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId)();
 };
 
 std::wstring_convert<std::codecvt_utf8_utf16<Il2CppChar>, Il2CppChar> utf16conv;

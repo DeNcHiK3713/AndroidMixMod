@@ -6,6 +6,7 @@
 #define TIMESCALE_ENABLED 0
 #define TIMESCALE_IN_GAME_ONLY 25
 #define TIMESCALE 1
+#define REDIRECT_TO_CN_SERVER 31
 #define SKIP_HERO_INTRO 2
 #define SHUTUP_BOB 3
 #define EXTENDED_BM 4
@@ -41,6 +42,7 @@ locale_map enUS = localization["enUS"] = std::unordered_map<int, const char*>{
     { TIMESCALE_ENABLED, "0_Toggle_Timescale" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_Timescale only in game" },
     { TIMESCALE, "1_SeekBar_Timescale value_100_800" },
+    { REDIRECT_TO_CN_SERVER, "26_Toggle_Redirect to CN Server" },
     { SKIP_HERO_INTRO, "2_Toggle_Disable hero introduction animation" },
     { SHUTUP_BOB, "3_Toggle_Disable Bob's comments on Battlegrounds" },
     { EXTENDED_BM, "4_Toggle_Remove restrictions on the use of emotions" },
