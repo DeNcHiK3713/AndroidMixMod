@@ -92,14 +92,20 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Entity_IsControlledByFriendlySidePlayer_Offset",
-    "Name": "Entity$$IsControlledByFriendlySidePlayer"
+    "Text": "EntityBase_GetControllerId_Offset",
+    "Name": "EntityBase$$GetControllerId"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Entity_GetController_Offset",
-    "Name": "Entity$$GetController"
+    "Text": "GameState_GetPlayer_Offset",
+    "Name": "GameState$$GetPlayer"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "Player_IsFriendlySide_Offset",
+    "Name": "Player$$IsFriendlySide"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
@@ -188,8 +194,8 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Entity_GetPremiumType_Offset",
-    "Name": "Entity$$GetPremiumType"
+    "Text": "EntityBase_GetPremiumType_Offset",
+    "Name": "EntityBase$$GetPremiumType"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",

@@ -223,38 +223,49 @@ bool RemoteActionHandler_CanReceiveEnemyEmote(RemoteActionHandler_o *_this, int 
     return result;
 }
 
-TAG_PREMIUM Entity_GetPremiumType(Entity_o *_this) {
+bool IsControlledByFriendlySidePlayer(GameState_o *gameState, EntityBase_o *_this) {
+    auto id = il2cpp::EntityBase_GetControllerId(_this);
+    auto player = il2cpp::GameState_GetPlayer(gameState, id);
+    
+    if (player == NULL) {
+        return false;
+    }
+    
+    return il2cpp::Player_IsFriendlySide(player);
+}
+
+TAG_PREMIUM EntityBase_GetPremiumType(EntityBase_o *_this) {
     auto gameMgr = il2cpp::GameMgr_Get();
     auto gameState = il2cpp::GameState_Get();
     if (gameMgr != NULL && !il2cpp::GameMgr_IsBattlegrounds(gameMgr) && gameState != NULL && il2cpp::GameState_IsGameCreatedOrCreating(gameState)) {
-        if (il2cpp::EntityBase_HasTag(reinterpret_cast<EntityBase_o *>(_this), 1932)) {
-            if (diamond == CardState::All || diamond == CardState::OnlyMy && il2cpp::Entity_GetController(_this) != NULL && il2cpp::Entity_IsControlledByFriendlySidePlayer(_this)) {
+        if (il2cpp::EntityBase_HasTag(_this, 1932)) {
+            if (diamond == CardState::All || diamond == CardState::OnlyMy && IsControlledByFriendlySidePlayer(gameState, _this)) {
                 return TAG_PREMIUM::DIAMOND;
             }
             if (diamond == CardState::Disabled) {
                 return TAG_PREMIUM::NORMAL;
             }
         }
-        if (il2cpp::EntityBase_HasTag(reinterpret_cast<EntityBase_o *>(_this), 2589)) {
-            if (signature == CardState::All || signature == CardState::OnlyMy && il2cpp::Entity_GetController(_this) != NULL && il2cpp::Entity_IsControlledByFriendlySidePlayer(_this)) {
+        if (il2cpp::EntityBase_HasTag(_this, 2589)) {
+            if (signature == CardState::All || signature == CardState::OnlyMy && IsControlledByFriendlySidePlayer(gameState, _this)) {
                 return TAG_PREMIUM::SIGNATURE;
             }
             if (signature == CardState::Disabled) {
                 return TAG_PREMIUM::NORMAL;
             }
         }
-        if (golden == CardState::All || golden == CardState::OnlyMy && il2cpp::Entity_GetController(_this) != NULL && il2cpp::Entity_IsControlledByFriendlySidePlayer(_this)) {
+        if (golden == CardState::All || golden == CardState::OnlyMy && IsControlledByFriendlySidePlayer(gameState, _this)) {
             return TAG_PREMIUM::GOLDEN;
         }
         if (golden == CardState::Disabled) {
             return TAG_PREMIUM::NORMAL;
         }
     }
-    return il2cpp::Entity_GetPremiumType(_this);
+    return il2cpp::EntityBase_GetPremiumType(_this);
 }
 
 void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardData_o *data, bool async) {
-    _this->fields.m_realTimePremium = static_cast<int>(Entity_GetPremiumType(_this));
+    _this->fields.m_realTimePremium = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
     il2cpp::Entity_LoadCard(_this, cardId, data, async);
 }
 
@@ -867,8 +878,9 @@ void hack_thread() {
     il2cpp::Blizzard_T5_Core_Map_int_object_get_Item = reinterpret_cast<Il2CppObject * (*)(Blizzard_T5_Core_Map_TKey__TValue__o * _this, int key, const MethodInfo * method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_object_get_Item_Offset));
 
     il2cpp::EntityBase_HasTag = reinterpret_cast<bool (*)(EntityBase_o * _this, int tag)>(getAbsoluteAddress(targetLibName, EntityBase_HasTag_Offset));
-    il2cpp::Entity_IsControlledByFriendlySidePlayer = reinterpret_cast<bool (*)(Entity_o * _this)>(getAbsoluteAddress(targetLibName, Entity_IsControlledByFriendlySidePlayer_Offset));
-    il2cpp::Entity_GetController = reinterpret_cast<Player_o * (*)(Entity_o * _this)>(getAbsoluteAddress(targetLibName, Entity_GetController_Offset));
+    il2cpp::EntityBase_GetControllerId = reinterpret_cast<int (*)(EntityBase_o * _this)>(getAbsoluteAddress(targetLibName, EntityBase_GetControllerId_Offset));
+    il2cpp::GameState_GetPlayer = reinterpret_cast<Player_o * (*)(GameState_o *_this, int id)>(getAbsoluteAddress(targetLibName, GameState_GetPlayer_Offset));
+    il2cpp::Player_IsFriendlySide = reinterpret_cast<bool (*)(Player_o *_this)>(getAbsoluteAddress(targetLibName, Player_IsFriendlySide_Offset));
 
     il2cpp::System_String_IsNullOrEmpty = reinterpret_cast<bool (*)(System_String_o * value)>(getAbsoluteAddress(targetLibName, System_String_IsNullOrEmpty_Offset));
 
@@ -911,7 +923,7 @@ void hack_thread() {
     HOOK(targetLibName, RemoteActionHandler_CanReceiveEnemyEmote_Offset, RemoteActionHandler_CanReceiveEnemyEmote, il2cpp::RemoteActionHandler_CanReceiveEnemyEmote);
 
     HOOK(targetLibName, Entity_LoadCard_Offset, Entity_LoadCard, il2cpp::Entity_LoadCard);
-    HOOK(targetLibName, Entity_GetPremiumType_Offset, Entity_GetPremiumType, il2cpp::Entity_GetPremiumType);
+    HOOK(targetLibName, EntityBase_GetPremiumType_Offset, EntityBase_GetPremiumType, il2cpp::EntityBase_GetPremiumType);
 
     HOOK(targetLibName, Gameplay_OnCreateGame_Offset, Gameplay_OnCreateGame, il2cpp::Gameplay_OnCreateGame);
 

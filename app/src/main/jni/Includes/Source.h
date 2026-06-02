@@ -147,7 +147,7 @@ namespace il2cpp {
 
     void (*Entity_LoadCard)(Entity_o *_this, System_String_o *cardId, Entity_LoadCardData_o *data, bool async);
 
-    TAG_PREMIUM(*Entity_GetPremiumType)(Entity_o *_this);
+    TAG_PREMIUM(*EntityBase_GetPremiumType)(EntityBase_o *_this);
 
     GameMgr_o *(*GameMgr_Get)();
 
@@ -167,9 +167,11 @@ namespace il2cpp {
 
     bool (*EntityBase_HasTag)(EntityBase_o *_this, int tag);
 
-    bool (*Entity_IsControlledByFriendlySidePlayer)(Entity_o *_this);
+    int (*EntityBase_GetControllerId)(EntityBase_o *_this);
 
-    Player_o *(*Entity_GetController)(Entity_o *_this);
+    Player_o *(*GameState_GetPlayer)(GameState_o *_this, int id);
+
+    bool (*Player_IsFriendlySide)(Player_o *_this);
 
     bool (*System_String_IsNullOrEmpty)(System_String_o *value);
 
