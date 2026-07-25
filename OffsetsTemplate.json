@@ -2,370 +2,377 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "HearthstoneApplication_Awake_Offset",
+    "Text": "#define HearthstoneApplication_Awake_Offset \"0x{0:X}\"",
     "Name": "Hearthstone.HearthstoneApplication$$Awake"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 3,
-    "Text": "Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey_Offset",
+    "Text": "#define Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey_Offset \"0x{0:X}\"",
     "Name": "Method$Blizzard.T5.Core.Map<int, SharedPlayerInfo>.ContainsKey()"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 3,
-    "Text": "Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item_Offset",
+    "Text": "#define Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item_Offset \"0x{0:X}\"",
     "Name": "Method$Blizzard.T5.Core.Map<int, SharedPlayerInfo>.get_Item()"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "RemoteActionHandler_CanReceiveEnemyEmote_Offset",
+    "Text": "#define RemoteActionHandler_CanReceiveEnemyEmote_Offset \"0x{0:X}\"",
     "Name": "RemoteActionHandler$$CanReceiveEnemyEmote"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "EnemyEmoteHandler_Get_Offset",
+    "Text": "#define EnemyEmoteHandler_Get_Offset \"0x{0:X}\"",
     "Name": "EnemyEmoteHandler$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 3,
-    "Text": "Blizzard_T5_Core_Map_int_bool_set_Item_Offset",
+    "Text": "#define Blizzard_T5_Core_Map_int_bool_set_Item_Offset \"0x{0:X}\"",
     "Name": "Method$Blizzard.T5.Core.Map<int, bool>.set_Item()"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UnityEngine_Time_get_time_Offset",
+    "Text": "#define UnityEngine_Time_get_time_Offset \"0x{0:X}\"",
     "Name": "UnityEngine.Time$$get_time"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameMgr_Get_Offset",
+    "Text": "#define GameMgr_Get_Offset \"0x{0:X}\"",
     "Name": "GameMgr$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameMgr_IsBattlegrounds_Offset",
+    "Text": "#define GameMgr_IsBattlegrounds_Offset \"0x{0:X}\"",
     "Name": "GameMgr$$IsBattlegrounds"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameState_Get_Offset",
+    "Text": "#define GameState_Get_Offset \"0x{0:X}\"",
     "Name": "GameState$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameState_IsGameCreatedOrCreating_Offset",
+    "Text": "#define GameState_IsGameCreatedOrCreating_Offset \"0x{0:X}\"",
     "Name": "GameState$$IsGameCreatedOrCreating"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameState_GetOpposingSidePlayer_Offset",
+    "Text": "#define GameState_GetOpposingSidePlayer_Offset \"0x{0:X}\"",
     "Name": "GameState$$GetOpposingSidePlayer"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameState_GetPlayerInfoMap_Offset",
+    "Text": "#define GameState_GetPlayerInfoMap_Offset \"0x{0:X}\"",
     "Name": "GameState$$GetPlayerInfoMap"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Blizzard_T5_Core_Map_int_object_ContainsKey_Offset",
+    "Text": "#define Blizzard_T5_Core_Map_int_object_ContainsKey_Offset \"0x{0:X}\"",
     "Name": "Blizzard.T5.Core.Map<int, object>$$ContainsKey"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Blizzard_T5_Core_Map_int_object_get_Item_Offset",
+    "Text": "#define Blizzard_T5_Core_Map_int_object_get_Item_Offset \"0x{0:X}\"",
     "Name": "Blizzard.T5.Core.Map<int, object>$$get_Item"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "EntityBase_GetControllerId_Offset",
+    "Text": "#define EntityBase_GetControllerId_Offset \"0x{0:X}\"",
     "Name": "EntityBase$$GetControllerId"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameState_GetPlayer_Offset",
+    "Text": "#define GameState_GetPlayer_Offset \"0x{0:X}\"",
     "Name": "GameState$$GetPlayer"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Player_IsFriendlySide_Offset",
+    "Text": "#define Player_IsFriendlySide_Offset \"0x{0:X}\"",
     "Name": "Player$$IsFriendlySide"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "System_String_IsNullOrEmpty_Offset",
+    "Text": "#define System_String_IsNullOrEmpty_Offset \"0x{0:X}\"",
     "Name": "System.String$$IsNullOrEmpty"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Network_Get_Offset",
+    "Text": "#define Network_Get_Offset \"0x{0:X}\"",
     "Name": "Network$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Network_SimulateUncleanDisconnectFromGameServer_Offset",
+    "Text": "#define Network_SimulateUncleanDisconnectFromGameServer_Offset \"0x{0:X}\"",
     "Name": "Network$$SimulateUncleanDisconnectFromGameServer"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "BnetPresenceMgr_Get_Offset",
+    "Text": "#define BnetPresenceMgr_Get_Offset \"0x{0:X}\"",
     "Name": "BnetPresenceMgr$$Get"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "BnetPresenceMgr_GetPlayer_Offset",
+    "Text": "#define BnetPresenceMgr_GetPlayer_Offset \"0x{0:X}\"",
     "Signature": "BnetPlayer_o* BnetPresenceMgr__GetPlayer (BnetPresenceMgr_o* __this, Blizzard_GameService_SDK_Client_Integration_BnetGameAccountId_o* id, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "BnetPlayer_GetBattleTag_Offset",
+    "Text": "#define BnetPlayer_GetBattleTag_Offset \"0x{0:X}\"",
     "Name": "BnetPlayer$$GetBattleTag"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "BnetBattleTag_GetString_Offset",
+    "Text": "#define BnetBattleTag_GetString_Offset \"0x{0:X}\"",
     "Name": "BnetBattleTag$$GetString"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "ClipboardUtils_CopyToClipboard_Offset",
+    "Text": "#define ClipboardUtils_CopyToClipboard_Offset \"0x{0:X}\"",
     "Name": "ClipboardUtils$$CopyToClipboard"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UIStatus_Get_Offset",
+    "Text": "#define UIStatus_Get_Offset \"0x{0:X}\"",
     "Name": "UIStatus$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UIStatus_AddInfo_Offset",
+    "Text": "#define UIStatus_AddInfo_Offset \"0x{0:X}\"",
     "Name": "UIStatus$$AddInfo"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "HistoryManager_Get_Offset",
+    "Text": "#define HistoryManager_Get_Offset \"0x{0:X}\"",
     "Name": "HistoryManager$$Get"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "HistoryManager_GetCurrentBigCard_Offset",
+    "Text": "#define HistoryManager_GetCurrentBigCard_Offset \"0x{0:X}\"",
     "Name": "HistoryManager$$GetCurrentBigCard"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "EntityBase_GetTag_Offset",
+    "Text": "#define EntityBase_GetTag_Offset \"0x{0:X}\"",
     "Name": "EntityBase$$GetTag"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "SocialToastMgr_AddToast_Offset",
+    "Text": "#define SocialToastMgr_AddToast_Offset \"0x{0:X}\"",
     "Signature": "void SocialToastMgr__AddToast (SocialToastMgr_o* __this, int32_t blocker, System_String_o* textArg, int32_t toastType, float displayTime, bool playSound, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "EntityBase_GetPremiumType_Offset",
+    "Text": "#define EntityBase_GetPremiumType_Offset \"0x{0:X}\"",
     "Name": "EntityBase$$GetPremiumType"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Gameplay_OnCreateGame_Offset",
+    "Text": "#define Gameplay_OnCreateGame_Offset \"0x{0:X}\"",
     "Name": "Gameplay$$OnCreateGame"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "PlayerLeaderboardManager_SetNextOpponent_Offset",
+    "Text": "#define PlayerLeaderboardManager_SetNextOpponent_Offset \"0x{0:X}\"",
     "Name": "PlayerLeaderboardManager$$SetNextOpponent"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "PlayerLeaderboardManager_SetCurrentOpponent_Offset",
+    "Text": "#define PlayerLeaderboardManager_SetCurrentOpponent_Offset \"0x{0:X}\"",
     "Name": "PlayerLeaderboardManager$$SetCurrentOpponent"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "PlayerLeaderboardCard_NotifyMousedOver_Offset",
+    "Text": "#define PlayerLeaderboardCard_NotifyMousedOver_Offset \"0x{0:X}\"",
     "Name": "PlayerLeaderboardCard$$NotifyMousedOver"
   },
   {
     "$type": "Generator.OffsetLines.ReplaceMethodPatch, Generator",
-    "Text": "MatchingQueueTab_Update_Patch",
+    "Text": "#define MatchingQueueTab_Update_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define MatchingQueueTab_Update_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "MatchingQueueTab_Update_Offset",
+      "Text": "#define MatchingQueueTab_Update_Offset \"0x{0:X}\"",
       "Name": "MatchingQueueTab$$Update"
     },
     "Search": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Time_get_deltaTime_Offset",
+      "Text": "#define Time_get_deltaTime_Offset \"0x{0:X}\"",
       "Name": "UnityEngine.Time$$get_deltaTime"
     },
     "Replace": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Time_get_unscaledDeltaTime_Offset",
+      "Text": "#define Time_get_unscaledDeltaTime_Offset \"0x{0:X}\"",
       "Name": "UnityEngine.Time$$get_unscaledDeltaTime"
     },
     "GetThunkFrom": {
       "$type": "Generator.OffsetLines.RegexLine, Generator",
       "Section": 0,
-      "Text": "BasicScene_NotifySceneLoadedWhenReady_Offset",
+      "Text": "#define BasicScene_NotifySceneLoadedWhenReady_Offset \"0x{0:X}\"",
       "Regex": "BasicScene\\.<NotifySceneLoadedWhenReady>d__\\d+\\$\\$MoveNext"
     }
   },
   {
     "$type": "Generator.OffsetLines.ReplaceMethodPatch, Generator",
-    "Text": "ThinkEmoteManager_Update_Patch",
+    "Text": "#define ThinkEmoteManager_Update_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define ThinkEmoteManager_Update_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "ThinkEmoteManager_Update_Offset",
+      "Text": "#define ThinkEmoteManager_Update_Offset \"0x{0:X}\"",
       "Name": "ThinkEmoteManager$$Update"
     },
     "Search": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Time_get_deltaTime_Offset",
+      "Text": "#define Time_get_deltaTime_Offset \"0x{0:X}\"",
       "Name": "UnityEngine.Time$$get_deltaTime"
     },
     "Replace": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Time_get_unscaledDeltaTime_Offset",
+      "Text": "#define Time_get_unscaledDeltaTime_Offset \"0x{0:X}\"",
       "Name": "UnityEngine.Time$$get_unscaledDeltaTime"
     },
     "GetThunkFrom": {
       "$type": "Generator.OffsetLines.RegexLine, Generator",
       "Section": 0,
-      "Text": "LettuceScene_NotifySceneLoadedWhenReady_Offset",
+      "Text": "#define LettuceScene_NotifySceneLoadedWhenReady_Offset \"0x{0:X}\"",
       "Regex": "LettuceScene\\.<NotifySceneLoadedWhenReady>d__\\d+\\$\\$MoveNext"
     }
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "ThinkEmoteManager_Update_Offset",
+    "Text": "#define ThinkEmoteManager_Update_Offset \"0x{0:X}\"",
     "Name": "ThinkEmoteManager$$Update"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "ThinkEmoteManager_PlayThinkEmote_Offset",
+    "Text": "#define ThinkEmoteManager_PlayThinkEmote_Offset \"0x{0:X}\"",
     "Name": "ThinkEmoteManager$$PlayThinkEmote"
   },
   {
     "$type": "Generator.OffsetLines.NeverBranchPatch, Generator",
-    "Text": "PlatformSettings_EmulateMobileDevice_Patch",
+    "Text": "#define PlatformSettings_EmulateMobileDevice_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define PlatformSettings_EmulateMobileDevice_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "PlatformSettings_EmulateMobileDevice_Offset",
+      "Text": "#define PlatformSettings_EmulateMobileDevice_Offset \"0x{0:X}\"",
       "Name": "PlatformSettings$$EmulateMobileDevice"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "HearthstoneApplication_IsPublic_Offset",
+      "Text": "#define HearthstoneApplication_IsPublic_Offset \"0x{0:X}\"",
       "Name": "Hearthstone.HearthstoneApplication$$IsPublic"
     }
   },
   {
     "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
-    "Text": "MulliganManager_HandleGameStart_Patch",
+    "Text": "#define MulliganManager_HandleGameStart_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define MulliganManager_HandleGameStart_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "MulliganManager_HandleGameStart_Offset",
+      "Text": "#define MulliganManager_HandleGameStart_Offset \"0x{0:X}\"",
       "Name": "MulliganManager$$HandleGameStart"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Cheats_ShouldSkipMulligan_Offset",
+      "Text": "#define Cheats_ShouldSkipMulligan_Offset \"0x{0:X}\"",
       "Name": "Cheats$$ShouldSkipMulligan"
     }
   },
   {
     "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
-    "Text": "EmoteHandler_EmoteSpamBlocked_Patch",
+    "Text": "#define EmoteHandler_EmoteSpamBlocked_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define EmoteHandler_EmoteSpamBlocked_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "EmoteHandler_EmoteSpamBlocked_Offset",
+      "Text": "#define EmoteHandler_EmoteSpamBlocked_Offset \"0x{0:X}\"",
       "Name": "EmoteHandler$$EmoteSpamBlocked"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "GameMgr_IsFriendly_Offset",
+      "Text": "#define GameMgr_IsFriendly_Offset \"0x{0:X}\"",
       "Name": "GameMgr$$IsFriendly"
     }
   },
   {
     "$type": "Generator.OffsetLines.AlwaysBranchPatch, Generator",
-    "Text": "EmoteHandler_HandleInput_Patch",
+    "Text": "#define EmoteHandler_HandleInput_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define EmoteHandler_HandleInput_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "EmoteHandler_HandleInput_Offset",
+      "Text": "#define EmoteHandler_HandleInput_Offset \"0x{0:X}\"",
       "Name": "EmoteHandler$$HandleInput"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "EntityBase_HasTag_Offset",
+      "Text": "#define EntityBase_HasTag_Offset \"0x{0:X}\"",
       "Name": "EntityBase$$HasTag"
     }
   },
   {
     "$type": "Generator.OffsetLines.ReplaceMethodArgumentPatch, Generator",
-    "Text": "EnemyEmoteHandler_Awake_Patch",
+    "Text": "#define EnemyEmoteHandler_Awake_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define EnemyEmoteHandler_Awake_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "EnemyEmoteHandler_Awake_Offset",
+      "Text": "#define EnemyEmoteHandler_Awake_Offset \"0x{0:X}\"",
       "Name": "EnemyEmoteHandler$$Awake"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "Blizzard_T5_Core_Map_int_bool_Add_Offset",
+      "Text": "#define Blizzard_T5_Core_Map_int_bool_Add_Offset \"0x{0:X}\"",
       "Name": "Blizzard.T5.Core.Map<int, bool>$$Add"
     },
 	"Argument": 2,
@@ -373,28 +380,30 @@
   },
   {
     "$type": "Generator.OffsetLines.ReplaceMethodResultPatch, Generator",
-    "Text": "NameBanner_Initialize_Patch",
+    "Text": "#define NameBanner_Initialize_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define NameBanner_Initialize_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "NameBanner_Initialize_Offset",
+      "Text": "#define NameBanner_Initialize_Offset \"0x{0:X}\"",
       "Name": "NameBanner$$Initialize"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "GameUtils_IsGameTypeRanked_Offset",
+      "Text": "#define GameUtils_IsGameTypeRanked_Offset \"0x{0:X}\"",
       "Name": "GameUtils$$IsGameTypeRanked"
     },
 	"Value": "#1"
   },
   {
     "$type": "Generator.OffsetLines.AlwaysBranchComparePatch, Generator",
-    "Text": "NameBanner_UpdateMedalWhenReady_Patch",
+    "Text": "#define NameBanner_UpdateMedalWhenReady_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define NameBanner_UpdateMedalWhenReady_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.RegexLine, Generator",
       "Section": 0,
-      "Text": "NameBanner_UpdateMedalWhenReady_Offset",
+      "Text": "#define NameBanner_UpdateMedalWhenReady_Offset \"0x{0:X}\"",
       "Regex": "NameBanner\\.<UpdateMedalWhenReady>d__\\d+\\$\\$MoveNext"
     },
 	"Value": "#2"
@@ -402,225 +411,227 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Time_get_timeScale_Offset",
+    "Text": "#define Time_get_timeScale_Offset \"0x{0:X}\"",
     "Name": "UnityEngine.Time$$get_timeScale"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Time_set_timeScale_Offset",
+    "Text": "#define Time_set_timeScale_Offset \"0x{0:X}\"",
     "Name": "UnityEngine.Time$$set_timeScale"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameMgr_OnGameSetup_Offset",
+    "Text": "#define GameMgr_OnGameSetup_Offset \"0x{0:X}\"",
     "Name": "GameMgr$$OnGameSetup"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameMgr_OnGameCanceled_Offset",
+    "Text": "#define GameMgr_OnGameCanceled_Offset \"0x{0:X}\"",
     "Name": "GameMgr$$OnGameCanceled"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "GameMgr_OnGameEnded_Offset",
+    "Text": "#define GameMgr_OnGameEnded_Offset \"0x{0:X}\"",
     "Name": "GameMgr$$OnGameEnded"
   },
   {
     "$type": "Generator.OffsetLines.MoveNextBreakPatch, Generator",
-    "Text": "TB_BaconShop_HandleGameOverWithTiming_Patch",
+    "Text": "#define TB_BaconShop_HandleGameOverWithTiming_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define TB_BaconShop_HandleGameOverWithTiming_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.RegexLine, Generator",
       "Section": 0,
-      "Text": "TB_BaconShop_HandleGameOverWithTiming_Offset",
+      "Text": "#define TB_BaconShop_HandleGameOverWithTiming_Offset \"0x{0:X}\"",
       "Regex": "TB_BaconShop\\.<HandleGameOverWithTiming>d__\\d+\\$\\$MoveNext"
     },
     "CalledMethod": {
       "$type": "Generator.OffsetLines.TextLine, Generator",
       "Section": 0,
-      "Text": "PlayerLeaderboardManager_UpdateLayout_Offset",
+      "Text": "#define PlayerLeaderboardManager_UpdateLayout_Offset \"0x{0:X}\"",
       "Name": "PlayerLeaderboardManager$$UpdateLayout"
     }
   },
   {
     "$type": "Generator.OffsetLines.MoveNextBreakPatch, Generator",
-    "Text": "TB_BaconShop_PlayBobLineWithoutText_Patch",
+    "Text": "#define TB_BaconShop_PlayBobLineWithoutText_Patch_Offset \"0x{0:X}\"",
+    "PatchDataText": "#define TB_BaconShop_PlayBobLineWithoutText_Patch_Data \"{0}\"",
     "Target": {
       "$type": "Generator.OffsetLines.RegexLine, Generator",
       "Section": 0,
-      "Text": "TB_BaconShop_PlayBobLineWithoutText_Offset",
+      "Text": "#define TB_BaconShop_PlayBobLineWithoutText_Offset \"0x{0:X}\"",
       "Regex": "TB_BaconShop\\.<PlayBobLineWithoutText>d__\\d+\\$\\$MoveNext"
     }
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Network_Update_Offset",
+    "Text": "#define Network_Update_Offset \"0x{0:X}\"",
     "Name": "Network$$Update"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Network_GetPlatformBuilder_Offset",
+    "Text": "#define Network_GetPlatformBuilder_Offset \"0x{0:X}\"",
     "Name": "Network$$GetPlatformBuilder"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UnityEngine_SystemInfo_get_deviceUniqueIdentifier_Offset",
+    "Text": "#define UnityEngine_SystemInfo_get_deviceUniqueIdentifier_Offset \"0x{0:X}\"",
     "Name": "UnityEngine.SystemInfo$$get_deviceUniqueIdentifier"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "System_Text_StringBuilder_TypeInfo_Offset",
+    "Text": "#define System_Text_StringBuilder_TypeInfo_Offset \"0x{0:X}\"",
     "Name": "System.Text.StringBuilder_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Text_StringBuilder_ctor_Offset",
+    "Text": "#define System_Text_StringBuilder_ctor_Offset \"0x{0:X}\"",
     "Signature": "void System_Text_StringBuilder___ctor (System_Text_StringBuilder_o* __this, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Text_StringBuilder_AppendString_Offset",
+    "Text": "#define System_Text_StringBuilder_AppendString_Offset \"0x{0:X}\"",
     "Signature": "System_Text_StringBuilder_o* System_Text_StringBuilder__Append (System_Text_StringBuilder_o* __this, System_String_o* value, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "System_Text_Encoding_get_Default_Offset",
+    "Text": "#define System_Text_Encoding_get_Default_Offset \"0x{0:X}\"",
     "Name": "System.Text.Encoding$$get_Default"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Text_Encoding_GetBytes_Offset",
+    "Text": "#define System_Text_Encoding_GetBytes_Offset \"0x{0:X}\"",
     "Signature": "System_Byte_array* System_Text_Encoding__GetBytes (System_Text_Encoding_o* __this, System_String_o* s, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "Crypto_SHA1_Calc_Offset",
+    "Text": "#define Crypto_SHA1_Calc_Offset \"0x{0:X}\"",
     "Signature": "System_String_o* Crypto_SHA1__Calc (System_String_o* message, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "System_Security_Cryptography_MD5_Create_Offset",
+    "Text": "#define System_Security_Cryptography_MD5_Create_Offset \"0x{0:X}\"",
     "Name": "System.Security.Cryptography.MD5$$Create"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Security_Cryptography_HashAlgorithm_ComputeHash_Offset",
+    "Text": "#define System_Security_Cryptography_HashAlgorithm_ComputeHash_Offset \"0x{0:X}\"",
     "Signature": "System_Byte_array* System_Security_Cryptography_HashAlgorithm__ComputeHash (System_Security_Cryptography_HashAlgorithm_o* __this, System_Byte_array* buffer, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Byte_ToStringFormat_Offset",
+    "Text": "#define System_Byte_ToStringFormat_Offset \"0x{0:X}\"",
     "Signature": "System_String_o* System_Byte__ToString (uint8_t __this, System_String_o* format, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Guid_ctor_Offset",
+    "Text": "#define System_Guid_ctor_Offset \"0x{0:X}\"",
     "Signature": "void System_Guid___ctor (System_Guid_o __this, System_String_o* g, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_String_ToUpper_Offset",
+    "Text": "#define System_String_ToUpper_Offset \"0x{0:X}\"",
     "Signature": "System_String_o* System_String__ToUpper (System_String_o* __this, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "System_Xml_XmlConvert_ToGuid_Offset",
+    "Text": "#define System_Xml_XmlConvert_ToGuid_Offset \"0x{0:X}\"",
     "Name": "System.Xml.XmlConvert$$ToGuid"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_Guid_ToString_Offset",
+    "Text": "#define System_Guid_ToString_Offset \"0x{0:X}\"",
     "Signature": "System_String_o* System_Guid__ToString (System_Guid_o __this, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "System_String_array_TypeInfo_Offset",
+    "Text": "#define System_String_array_TypeInfo_Offset \"0x{0:X}\"",
     "Name": "string[]_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "string_TypeInfo_Offset",
+    "Text": "#define string_TypeInfo_Offset \"0x{0:X}\"",
     "Name": "string_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "OSCategory_TypeInfo_Offset",
+    "Text": "#define OSCategory_TypeInfo_Offset \"0x{0:X}\"",
     "Name": "OSCategory_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 2,
-    "Text": "ScreenCategory_TypeInfo_Offset",
+    "Text": "#define ScreenCategory_TypeInfo_Offset \"0x{0:X}\"",
     "Name": "ScreenCategory_TypeInfo"
   },
   {
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
-    "Text": "System_String_Concat_Offset",
+    "Text": "#define System_String_Concat_Offset \"0x{0:X}\"",
     "Signature": "System_String_o* System_String__Concat (System_String_array* values, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Entity_LoadCard_Offset",
+    "Text": "#define Entity_LoadCard_Offset \"0x{0:X}\"",
     "Name": "Entity$$LoadCard"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "EntityBase_HasTag_Offset",
+    "Text": "#define EntityBase_HasTag_Offset \"0x{0:X}\"",
     "Name": "EntityBase$$HasTag"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UpdateUtils_OpenAppStore_Offset",
+    "Text": "#define UpdateUtils_OpenAppStore_Offset \"0x{0:X}\"",
     "Name": "UpdateUtils$$OpenAppStore"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "UnityEngine_Application_OpenURL_Offset",
+    "Text": "#define UnityEngine_Application_OpenURL_Offset \"0x{0:X}\"",
     "Name": "UnityEngine.Application$$OpenURL"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Localization_GetLocaleName_Offset",
+    "Text": "#define Localization_GetLocaleName_Offset \"0x{0:X}\"",
     "Name": "Localization$$GetLocaleName"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Localization_SetPegLocaleName_Offset",
+    "Text": "#define Localization_SetPegLocaleName_Offset \"0x{0:X}\"",
     "Name": "Localization$$SetPegLocaleName"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset",
+    "Text": "#define Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset \"0x{0:X}\"",
     "Name": "Hearthstone.Devices.DeviceLocaleHelper$$GetCurrentRegionId"
   }
 ]
