@@ -6,6 +6,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      DOTNET_ROLL_FORWARD: "LatestMajor"
+
     steps:
 
       - name: Clone repository
@@ -39,8 +43,7 @@ jobs:
       - name: Install dotnet runtime
         uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
-          add-repository: ppa:dotnet/backports
-          packages: dotnet-runtime-6.0 dotnet-runtime-10.0
+          packages: dotnet-runtime-10.0
           version: 1.0
           
       - name: Make Downloads dir
