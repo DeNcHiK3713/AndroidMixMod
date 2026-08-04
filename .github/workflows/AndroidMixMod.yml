@@ -183,15 +183,10 @@ jobs:
       - name: Generate offsets
         working-directory: ${{ env.Downloads_Dir }}
         run: |
-          search_str="androidRenderOutsideSafeArea"
           echo "#ifdef __aarch64__" > ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
           ./Generator/Generator ${{ github.workspace }}/OffsetsTemplate.json ./arm64-v8a/script.json ./${{ env.apk_folder_name }}/lib/arm64-v8a/libil2cpp.so >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
-          offset=$(grep -oba -m1 -o ${search_str} ./${{ env.apk_folder_name }}/lib/arm64-v8a/libunity.so)
-          printf "#define Unity_AndroidRenderOutsideSafeArea_Offset \"0x%X\"\n" $((${offset%:${search_str}} + ${#search_str} - 1)) >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
           echo -e "#else\n" >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
           ./Generator/Generator ${{ github.workspace }}/OffsetsTemplate.json ./armeabi-v7a/script.json ./${{ env.apk_folder_name }}/lib/armeabi-v7a/libil2cpp.so >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
-          offset=$(grep -oba -m1 -o ${search_str} ./${{ env.apk_folder_name }}/lib/armeabi-v7a/libunity.so)
-          printf "#define Unity_AndroidRenderOutsideSafeArea_Offset \"0x%X\"\n" $((${offset%:${search_str}} + ${#search_str} - 1)) >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
           echo "#endif" >> ${{ github.workspace }}/app/src/main/jni/Includes/Offsets.h
 
       - name: Check offsets

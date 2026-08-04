@@ -118,7 +118,6 @@ jobjectArray SettingsList(JNIEnv *env, jobject activityObject) {
             "Category_Settings",
             localization[language][SAVE_SETTINGS], //-1 is checked on Preferences.java
             localization[language][AUTO_SIZE],
-            localization[language][IGNORE_SCREEN_CUTOUTS],
             "Category_Menu",
             localization[language][LANGUAGE],
             localization[language][CLOSE_SETTINGS],
@@ -760,9 +759,6 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         break;
     case 26:
         redirectToCNServer = boolean;
-        break;
-    case -11:
-        PATCH_SWITCH(OBFUSCATE("libunity.so"), Unity_AndroidRenderOutsideSafeArea_Offset, "30", boolean);
         break;
     case -10:
         bool reload = false;

@@ -5,7 +5,6 @@
 
 locale_map zhCN = localization["zhCN"] = std::unordered_map<int, const char*>{
     { LANGUAGE, "-10_Spinner_语言_使用游戏语言,English,Русский,中文 (简体)" },
-    { IGNORE_SCREEN_CUTOUTS, "-11_Toggle_禁用忽略屏幕切口"},
     { TIMESCALE_ENABLED, "0_Toggle_启用时间刻度" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_时间刻度仅在游戏中" },
     { TIMESCALE, "1_SeekBar_时间刻度值_100_800" },

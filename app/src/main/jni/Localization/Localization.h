@@ -2,7 +2,6 @@
 #define ANDROIDMIXMOD_LOCALIZATION_H
 
 #define LANGUAGE 27
-#define IGNORE_SCREEN_CUTOUTS 26
 #define TIMESCALE_ENABLED 0
 #define TIMESCALE_IN_GAME_ONLY 25
 #define TIMESCALE 1
@@ -38,7 +37,6 @@ localization_map localization;
 
 locale_map enUS = localization["enUS"] = std::unordered_map<int, const char*>{
     { LANGUAGE, "-10_Spinner_Language_Use game language,English,Русский,中文 (简体)" },
-    { IGNORE_SCREEN_CUTOUTS, "-11_Toggle_Disable ignoring screen cutouts"},
     { TIMESCALE_ENABLED, "0_Toggle_Timescale" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_Timescale only in game" },
     { TIMESCALE, "1_SeekBar_Timescale value_100_800" },

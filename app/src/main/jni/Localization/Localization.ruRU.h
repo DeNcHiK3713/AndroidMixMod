@@ -5,7 +5,6 @@
 
 locale_map ruRU = localization["ruRU"] = std::unordered_map<int, const char*>{
     { LANGUAGE, "-10_Spinner_Язык_Использовать язык игры,English,Русский,中文 (简体)" },
-    { IGNORE_SCREEN_CUTOUTS, "-11_Toggle_Отключить игнорирование вырезов экрана"},
     { TIMESCALE_ENABLED, "0_Toggle_Ускорение анимации" },
     { TIMESCALE_IN_GAME_ONLY, "25_Toggle_Ускорение только в игре" },
     { TIMESCALE, "1_SeekBar_Cкорость_100_800" },
