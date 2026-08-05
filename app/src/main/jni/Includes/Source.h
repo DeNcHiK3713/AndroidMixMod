@@ -81,11 +81,13 @@ namespace il2cpp {
 
     void (*il2cpp_thread_detach)(void *thread);
 
-    uint(*il2cpp_gchandle_new)(void *object, bool weak);
+    // Since 36.2 (metadata v39) il2cpp returns a 64-bit gc handle, storing it in a
+    // 32-bit type truncates the value and the next free/get_target faults.
+    uintptr_t (*il2cpp_gchandle_new)(void *object, bool weak);
 
-    void (*il2cpp_gchandle_free)(uint gchandle);
+    void (*il2cpp_gchandle_free)(uintptr_t gchandle);
 
-    Il2CppObject* (*il2cpp_gchandle_get_target)(uint32_t gchandle);
+    Il2CppObject* (*il2cpp_gchandle_get_target)(uintptr_t gchandle);
 
     void *(*il2cpp_array_new_specific)(Il2CppClass *arrayTypeInfo, size_t length);
 

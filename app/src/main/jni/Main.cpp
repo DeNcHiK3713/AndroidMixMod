@@ -59,7 +59,7 @@ int m_chainedEnemyEmotes;
 
 std::mutex deviceNameMutex, currentOpponentMutex;
 
-uint currentOpponent_gchandle = -1;
+uintptr_t currentOpponent_gchandle = -1;
 
 // Do not change or translate the first text unless you know what you are doing
 // Assigning feature numbers is optional. Without it, it will automatically count for you, starting from 0
@@ -814,9 +814,9 @@ void hack_thread() {
     il2cpp::il2cpp_domain_get = reinterpret_cast<void *(*)()>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_domain_get")));
     il2cpp::il2cpp_thread_attach = reinterpret_cast<void *(*)(void *domain)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_attach")));
     il2cpp::il2cpp_thread_detach = reinterpret_cast<void (*)(void *thread)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_detach")));
-    il2cpp::il2cpp_gchandle_new = reinterpret_cast<uint(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
-    il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(uint gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
-    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(uint32_t gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
+    il2cpp::il2cpp_gchandle_new = reinterpret_cast<uintptr_t (*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
+    il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(uintptr_t gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
+    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(uintptr_t gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
 
     il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
     il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
