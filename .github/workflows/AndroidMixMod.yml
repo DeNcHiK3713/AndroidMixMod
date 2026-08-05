@@ -9,6 +9,8 @@ jobs:
 
     env:
       DOTNET_ROLL_FORWARD: "LatestMajor"
+      # pinned so patches/Il2CppDumper-enum-metadata-v32plus.patch keeps applying
+      IL2CPPDUMPER_COMMIT: "7c4a19426e2c17cfaa6e0a5b37f35869a93fad21"
 
     steps:
 
@@ -128,24 +130,32 @@ jobs:
         working-directory: ${{ env.Downloads_Dir }}/${{ env.apk_folder_name }}/
         run: git apply --unidiff-zero ${{ github.workspace }}/0001-AndroidMixMod.patch
         
-      - name: Get Il2CppDumper latest release info
-        run: |
-          curl --silent https://api.github.com/repos/c01ns/Il2CppDumper/releases/latest >> ${{ runner.temp }}/Il2CppDumper_release_info.json
-          echo "Il2CppDumper_asset_id=$(jq -r '.assets[0] | .id' ${{ runner.temp }}/Il2CppDumper_release_info.json)" >> $GITHUB_ENV
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
       - name: Cache Il2CppDumper
         id: Il2CppDumper-cache
         uses: actions/cache@v5
         with:
           path: ${{ env.Downloads_Dir }}/Il2CppDumper
-          key: Il2CppDumper-${{ runner.os }}-${{ env.Il2CppDumper_asset_id }}
-          
-      - name: Download Il2CppDumper
+          key: Il2CppDumper-${{ runner.os }}-${{ env.IL2CPPDUMPER_COMMIT }}-${{ hashFiles('patches/Il2CppDumper-enum-metadata-v32plus.patch') }}
+
+      # The released build of c01ns/Il2CppDumper cannot resolve enum underlying types on metadata >= 32:
+      # Il2CppTypeDefinition.elementTypeIndex was removed there, so every enum field/parameter is emitted
+      # as an 8-byte Il2CppObject* instead of int32_t. That silently shifts every struct layout in il2cpp.h.
+      # Build from source with the fix applied instead.
+      - name: Build patched Il2CppDumper
         if: steps.Il2CppDumper-cache.outputs.cache-hit != 'true'
         working-directory: ${{ env.Downloads_Dir }}
         run: |
-          wget $(jq -r '.assets[0] | .browser_download_url' ${{ runner.temp }}/Il2CppDumper_release_info.json) -O ./Il2CppDumper.zip
-          unzip -q -j Il2CppDumper.zip -d Il2CppDumper 2> /dev/null || true
+          git clone https://github.com/c01ns/Il2CppDumper.git Il2CppDumperSrc
+          cd Il2CppDumperSrc
+          git checkout ${{ env.IL2CPPDUMPER_COMMIT }}
+          git apply --verbose ${{ github.workspace }}/patches/Il2CppDumper-enum-metadata-v32plus.patch
+          dotnet publish Il2CppDumper/Il2CppDumper.csproj -c Release -f net8.0 -o ../Il2CppDumper
+          cd ..
           sed -i "s/\"GenerateDummyDll\": true/\"GenerateDummyDll\": false/" ./Il2CppDumper/config.json
           sed -i "s/\"RequireAnyKey\": true/\"RequireAnyKey\": false/" ./Il2CppDumper/config.json
           
@@ -179,6 +189,20 @@ jobs:
           cp ./armeabi-v7a/il2cpp.h ${{ github.workspace }}/app/src/main/jni/Includes/armeabi-v7a
           sed -i "s/std\(in\|out\|err\)/_std\1/g" ${{ github.workspace }}/app/src/main/jni/Includes/arm64-v8a/il2cpp.h
           sed -i "s/std\(in\|out\|err\)/_std\1/g" ${{ github.workspace }}/app/src/main/jni/Includes/armeabi-v7a/il2cpp.h
+
+      # Guard against a dumper that cannot resolve enum underlying types: it emits enum fields as
+      # 8-byte pointers, which shifts every struct layout in il2cpp.h and makes _this->fields.X
+      # read/write the wrong offsets at runtime (silent memory corruption, not a build error).
+      - name: Check il2cpp.h enum fields
+        working-directory: ${{ github.workspace }}/app/src/main/jni/Includes/
+        run: |
+          for abi in arm64-v8a armeabi-v7a; do
+            if ! grep -q "^	int32_t m_realTimePremium;$" $abi/il2cpp.h; then
+              echo "$abi/il2cpp.h: Entity.m_realTimePremium is not an int32_t - the dumper failed to resolve enum types, struct layouts are shifted"
+              grep -n "m_realTimePremium" $abi/il2cpp.h || true
+              exit 1
+            fi
+          done
 
       - name: Generate offsets
         working-directory: ${{ env.Downloads_Dir }}

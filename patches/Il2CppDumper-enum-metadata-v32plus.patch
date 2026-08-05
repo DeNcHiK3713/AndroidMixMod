@@ -1,0 +1,69 @@
+--- a/Il2CppDumper/Utils/Il2CppExecutor.cs
++++ b/Il2CppDumper/Utils/Il2CppExecutor.cs
+@@ -485,6 +485,19 @@
+             }
+         }
+ 
++        // Metadata >= 32 (Unity 6) removed Il2CppTypeDefinition.elementTypeIndex, so it stays 0 and
++        // il2Cpp.types[0] resolves to an unrelated (reference) type - every enum would then be
++        // emitted as an 8-byte pointer instead of its 4-byte underlying type, shifting struct layouts.
++        // An enum's underlying type is always the type of its first instance field ("value__").
++        public Il2CppType GetEnumUnderlyingType(Il2CppTypeDefinition typeDef)
++        {
++            if (il2Cpp.Version <= 31)
++            {
++                return il2Cpp.types[typeDef.elementTypeIndex];
++            }
++            return il2Cpp.types[metadata.fieldDefs[typeDef.fieldStart].typeIndex];
++        }
++
+         public Il2CppTypeEnum ReadEncodedTypeEnum(BinaryReader reader, out Il2CppType enumType)
+         {
+             enumType = null;
+@@ -494,7 +507,7 @@
+                 var enumTypeIndex = reader.ReadCompressedInt32();
+                 enumType = il2Cpp.types[enumTypeIndex];
+                 var typeDef = GetTypeDefinitionFromIl2CppType(enumType);
+-                type = il2Cpp.types[typeDef.elementTypeIndex].type;
++                type = GetEnumUnderlyingType(typeDef).type;
+             }
+             return type;
+         }
+--- a/Il2CppDumper/Outputs/StructGenerator.cs
++++ b/Il2CppDumper/Outputs/StructGenerator.cs
+@@ -586,7 +586,7 @@
+                         var typeDef = executor.GetTypeDefinitionFromIl2CppType(il2CppType);
+                         if (typeDef.IsEnum)
+                         {
+-                            return ParseType(il2Cpp.types[typeDef.elementTypeIndex]);
++                            return ParseType(executor.GetEnumUnderlyingType(typeDef));
+                         }
+                         return structNameDic[typeDef] + "_o";
+                     }
+@@ -628,7 +628,7 @@
+                         {
+                             if (typeDef.IsEnum)
+                             {
+-                                return ParseType(il2Cpp.types[typeDef.elementTypeIndex]);
++                                return ParseType(executor.GetEnumUnderlyingType(typeDef));
+                             }
+                             return typeStructName + "_o";
+                         }
+@@ -1300,7 +1300,7 @@
+                         var typeDef = executor.GetTypeDefinitionFromIl2CppType(il2CppType);
+                         if (typeDef.IsEnum)
+                         {
+-                            return IsCustomType(il2Cpp.types[typeDef.elementTypeIndex], context);
++                            return IsCustomType(executor.GetEnumUnderlyingType(typeDef), context);
+                         }
+                         return true;
+                     }
+@@ -1310,7 +1310,7 @@
+                         var typeDef = executor.GetGenericClassTypeDefinition(genericClass);
+                         if (typeDef.IsEnum)
+                         {
+-                            return IsCustomType(il2Cpp.types[typeDef.elementTypeIndex], context);
++                            return IsCustomType(executor.GetEnumUnderlyingType(typeDef), context);
+                         }
+                         return true;
+                     }
