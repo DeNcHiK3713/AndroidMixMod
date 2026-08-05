@@ -213,7 +213,7 @@ namespace il2cpp {
 
     void (*ThinkEmoteManager_Update)(ThinkEmoteManager_o *_this);
 
-    void (*SocialToastMgr_AddToast)(SocialToastMgr_o *_this, int blocker, System_String_o *textArg, int toastType, float displayTime, bool playSound);
+    void (*SocialToastMgr_AddToast)(SocialToastMgr_o *_this, Il2CppObject *blocker, System_String_o *textArg, Il2CppObject *toastType, float displayTime, bool playSound);
 
     void (*Network_Update)(Network_o * _this);
 

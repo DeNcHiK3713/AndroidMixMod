@@ -130,8 +130,8 @@ jobs:
         
       - name: Get Il2CppDumper latest release info
         run: |
-          curl --silent https://api.github.com/repos/Perfare/Il2CppDumper/releases/latest >> ${{ runner.temp }}/Il2CppDumper_release_info.json
-          echo "Il2CppDumper_asset_id=$(jq -r '.assets[] | select(.name | contains("net6") and (contains("win") | not)) | .id' ${{ runner.temp }}/Il2CppDumper_release_info.json)" >> $GITHUB_ENV
+          curl --silent https://api.github.com/repos/c01ns/Il2CppDumper/releases/latest >> ${{ runner.temp }}/Il2CppDumper_release_info.json
+          echo "Il2CppDumper_asset_id=$(jq -r '.assets[0] | .id' ${{ runner.temp }}/Il2CppDumper_release_info.json)" >> $GITHUB_ENV
 
       - name: Cache Il2CppDumper
         id: Il2CppDumper-cache
@@ -144,8 +144,8 @@ jobs:
         if: steps.Il2CppDumper-cache.outputs.cache-hit != 'true'
         working-directory: ${{ env.Downloads_Dir }}
         run: |
-          wget $(jq -r '.assets[] | select(.name | contains("net6") and (contains("win") | not)) | .browser_download_url' ${{ runner.temp }}/Il2CppDumper_release_info.json) -O ./Il2CppDumper.zip
-          unzip Il2CppDumper.zip -d Il2CppDumper
+          wget $(jq -r '.assets[0] | .browser_download_url' ${{ runner.temp }}/Il2CppDumper_release_info.json) -O ./Il2CppDumper.zip
+          unzip -q -j Il2CppDumper.zip -d Il2CppDumper 2> /dev/null || true
           sed -i "s/\"GenerateDummyDll\": true/\"GenerateDummyDll\": false/" ./Il2CppDumper/config.json
           sed -i "s/\"RequireAnyKey\": true/\"RequireAnyKey\": false/" ./Il2CppDumper/config.json
           
