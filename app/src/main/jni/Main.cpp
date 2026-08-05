@@ -192,7 +192,7 @@ BnetRegion Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId() {
     return il2cpp::Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId();
 }
 
-void SocialToastMgr_AddToast(SocialToastMgr_o *_this, Il2CppObject *blocker, System_String_o *textArg, Il2CppObject *toastType, float displayTime, bool playSound) {
+void SocialToastMgr_AddToast(SocialToastMgr_o *_this, int blocker, System_String_o *textArg, int toastType, float displayTime, bool playSound) {
     displayTime *= timeScale;
     il2cpp::SocialToastMgr_AddToast(_this, blocker, textArg, toastType, displayTime, playSound);
 }
@@ -264,8 +264,7 @@ TAG_PREMIUM EntityBase_GetPremiumType(EntityBase_o *_this) {
 }
 
 void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardData_o *data, bool async) {
-    *reinterpret_cast<int *>(&_this->fields.m_realTimePremium) = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
-    
+    _this->fields.m_realTimePremium = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
     il2cpp::Entity_LoadCard(_this, cardId, data, async);
 }
 

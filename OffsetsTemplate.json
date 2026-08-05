@@ -189,7 +189,7 @@
     "$type": "Generator.OffsetLines.SignatureLine, Generator",
     "Section": 0,
     "Text": "#define SocialToastMgr_AddToast_Offset \"0x{0:X}\"",
-    "Signature": "void SocialToastMgr__AddToast (SocialToastMgr_o* __this, Il2CppObject* blocker, System_String_o* textArg, Il2CppObject* toastType, float displayTime, bool playSound, const MethodInfo* method);"
+    "Signature": "void SocialToastMgr__AddToast (SocialToastMgr_o* __this, int32_t blocker, System_String_o* textArg, int32_t toastType, float displayTime, bool playSound, const MethodInfo* method);"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
