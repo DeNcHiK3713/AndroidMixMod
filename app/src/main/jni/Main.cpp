@@ -264,7 +264,8 @@ TAG_PREMIUM EntityBase_GetPremiumType(EntityBase_o *_this) {
 }
 
 void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardData_o *data, bool async) {
-    reinterpret_cast<TAG_PREMIUM_o *>(_this->fields.m_realTimePremium)->fields.value__ = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
+    *reinterpret_cast<int *>(&_this->fields.m_realTimePremium) = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
+    
     il2cpp::Entity_LoadCard(_this, cardId, data, async);
 }
 
