@@ -81,11 +81,11 @@ namespace il2cpp {
 
     void (*il2cpp_thread_detach)(void *thread);
 
-    uint(*il2cpp_gchandle_new)(void *object, bool weak);
+    void *(*il2cpp_gchandle_new)(void *object, bool weak);
 
-    void (*il2cpp_gchandle_free)(uint gchandle);
+    void (*il2cpp_gchandle_free)(void *gchandle);
 
-    Il2CppObject* (*il2cpp_gchandle_get_target)(uint32_t gchandle);
+    Il2CppObject* (*il2cpp_gchandle_get_target)(void *gchandle);
 
     void *(*il2cpp_array_new_specific)(Il2CppClass *arrayTypeInfo, size_t length);
 

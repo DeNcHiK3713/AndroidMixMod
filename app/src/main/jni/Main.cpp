@@ -59,7 +59,7 @@ int m_chainedEnemyEmotes;
 
 std::mutex deviceNameMutex, currentOpponentMutex;
 
-uint currentOpponent_gchandle = -1;
+void * currentOpponent_gchandle = nullptr;
 
 // Do not change or translate the first text unless you know what you are doing
 // Assigning feature numbers is optional. Without it, it will automatically count for you, starting from 0
@@ -272,9 +272,9 @@ void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardDa
 void UpdateCurrentOpponent() {
     std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
-    if (currentOpponent_gchandle != -1) {
+    if (currentOpponent_gchandle != nullptr) {
         il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
-        currentOpponent_gchandle = -1;
+        currentOpponent_gchandle = nullptr;
     }
     auto gameState = il2cpp::GameState_Get();
     if (gameState == NULL) {
@@ -293,9 +293,9 @@ void UpdateCurrentOpponent() {
 void UpdateCurrentOpponent(int opponentPlayerId) {
     std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
-    if (currentOpponent_gchandle != -1) {
+    if (currentOpponent_gchandle != nullptr) {
         il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
-        currentOpponent_gchandle = -1;
+        currentOpponent_gchandle = nullptr;
     }
     auto gameState = il2cpp::GameState_Get();
     auto playerInfoMap = reinterpret_cast<Blizzard_T5_Core_Map_TKey__TValue__o *>(il2cpp::GameState_GetPlayerInfoMap(gameState));
@@ -815,9 +815,9 @@ void hack_thread() {
     il2cpp::il2cpp_domain_get = reinterpret_cast<void *(*)()>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_domain_get")));
     il2cpp::il2cpp_thread_attach = reinterpret_cast<void *(*)(void *domain)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_attach")));
     il2cpp::il2cpp_thread_detach = reinterpret_cast<void (*)(void *thread)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_detach")));
-    il2cpp::il2cpp_gchandle_new = reinterpret_cast<uint(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
-    il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(uint gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
-    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(uint32_t gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
+    il2cpp::il2cpp_gchandle_new = reinterpret_cast<void *(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
+    il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
+    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
 
     il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
     il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
