@@ -14,37 +14,6 @@
 -    move-result v3
 +    const/4 v3, 0x1
  
---- a/smali/com/blizzard/wtcg/hearthstone/FileUtils.smali
-+++ b/smali/com/blizzard/wtcg/hearthstone/FileUtils.smali
-@@ -1753,3 +1753,19 @@
- .method public static GetInternalFilesDir()Ljava/io/File;
--    .locals 1
-+    .locals 2
-+
-+    invoke-static {}, Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;->getInstance()Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;
-+
-+    move-result-object v0
-+
-+    invoke-virtual {v0}, Lcom/blizzard/wtcg/hearthstone/HearthstoneApplication;->getApplicationContext()Landroid/content/Context;
-+
-+    move-result-object v0
-+
-+    const/4 v1, 0x0
-+
-+    invoke-virtual {v0, v1}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
-+
-+    move-result-object v0
-+
-+    if-nez v0, :cond_0
- 
-@@ -1782,6 +1782,7 @@
- 
-     move-result-object v0
- 
-+    :cond_0
-     return-object v0
- .end method
- 
 --- a/smali/com/blizzard/wtcg/hearthstone/HearthstoneActivity.smali
 +++ b/smali/com/blizzard/wtcg/hearthstone/HearthstoneActivity.smali
 @@ -610,3 +610,7 @@
