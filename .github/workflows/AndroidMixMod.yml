@@ -1,4 +1,4 @@
-name: AndroidMixMod workflow
+name: AndroidMixMod test workflow
 
 on:
   workflow_dispatch:
@@ -237,8 +237,7 @@ jobs:
         run: |
           mkdir -p ${{ github.workspace }}/Release/signed/
           mv ${{steps.sign_app.outputs.signedReleaseFile}} ${{ github.workspace }}/Release/signed/${{ env.mixmod_apk_name }}
-      - uses: "ncipollo/release-action@v1"
+      - uses: actions/upload-artifact@v6
         with:
-          tag: "${{ env.apk_version }}"
-          name: "AndroidMixMod ${{ env.apk_version }}"
-          artifacts: "${{ github.workspace }}/Release/signed/${{ env.mixmod_apk_name }}"
+          name: ${{ env.mixmod_apk_name }}
+          path: ${{ github.workspace }}/Release/signed/${{ env.mixmod_apk_name }}
