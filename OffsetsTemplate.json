@@ -469,8 +469,8 @@
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
     "Section": 0,
-    "Text": "#define Network_Update_Offset \"0x{0:X}\"",
-    "Name": "Network$$Update"
+    "Text": "#define UnityEngine_Canvas_SendWillRenderCanvases_Offset \"0x{0:X}\"",
+    "Name": "UnityEngine.Canvas$$SendWillRenderCanvases"
   },
   {
     "$type": "Generator.OffsetLines.TextLine, Generator",
@@ -627,5 +627,117 @@
     "Section": 0,
     "Text": "#define Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset \"0x{0:X}\"",
     "Name": "Hearthstone.Devices.DeviceLocaleHelper$$GetCurrentRegionId"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define GameState_GetEntityMap_Offset \"0x{0:X}\"",
+    "Name": "GameState$$GetEntityMap"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define Entity_HandleEntityChange_Offset \"0x{0:X}\"",
+    "Name": "Entity$$HandleEntityChange"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "#define Network_Entity_TypeInfo_Offset \"0x{0:X}\"",
+    "Name": "Network.Entity_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "#define Network_Entity_ctor_Offset \"0x{0:X}\"",
+    "Signature": "void Network_Entity___ctor (Network_Entity_o* __this, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "#define Entity_LoadCardData_TypeInfo_Offset \"0x{0:X}\"",
+    "Name": "Entity.LoadCardData_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.SignatureLine, Generator",
+    "Section": 0,
+    "Text": "#define Entity_LoadCardData_ctor_Offset \"0x{0:X}\"",
+    "Signature": "void Entity_LoadCardData___ctor (Entity_LoadCardData_o* __this, const MethodInfo* method);"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "#define System_Collections_Generic_List_Network_Entity_Tag_TypeInfo_Offset \"0x{0:X}\"",
+    "Name": "System.Collections.Generic.List<Network.Entity.Tag>_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "#define Method_System_Collections_Generic_List_Network_Entity_Tag_ctor_Offset \"0x{0:X}\"",
+    "Name": "Method$System.Collections.Generic.List<Network.Entity.Tag>..ctor()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 2,
+    "Text": "#define System_Collections_Generic_List_Network_Entity_TagList_TypeInfo_Offset \"0x{0:X}\"",
+    "Name": "System.Collections.Generic.List<Network.Entity.TagList>_TypeInfo"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "#define Method_System_Collections_Generic_List_Network_Entity_TagList_ctor_Offset \"0x{0:X}\"",
+    "Name": "Method$System.Collections.Generic.List<Network.Entity.TagList>..ctor()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define System_Collections_Generic_List_object_ctor_Offset \"0x{0:X}\"",
+    "Name": "System.Collections.Generic.List<object>$$.ctor"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define Blizzard_T5_Core_Map_int_object_GetEnumerator_Offset \"0x{0:X}\"",
+    "Name": "Blizzard.T5.Core.Map<int, object>$$GetEnumerator"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "#define Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator_Offset \"0x{0:X}\"",
+    "Name": "Method$Blizzard.T5.Core.Map<int, Entity>.GetEnumerator()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext_Offset \"0x{0:X}\"",
+    "Name": "Blizzard.T5.Core.Map.Enumerator<int, object>$$MoveNext"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "#define Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext_Offset \"0x{0:X}\"",
+    "Name": "Method$Blizzard.T5.Core.Map.Enumerator<int, Entity>.MoveNext()"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 0,
+    "Text": "#define Blizzard_T5_Core_Map_Enumerator_int_object_Dispose_Offset \"0x{0:X}\"",
+    "Name": "Blizzard.T5.Core.Map.Enumerator<int, object>$$Dispose"
+  },
+  {
+    "$type": "Generator.OffsetLines.TextLine, Generator",
+    "Section": 3,
+    "Text": "#define Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose_Offset \"0x{0:X}\"",
+    "Name": "Method$Blizzard.T5.Core.Map.Enumerator<int, Entity>.Dispose()"
+  },
+  {
+    "$type": "Generator.OffsetLines.GetFirstMethodOffsetPatch, Generator",
+    "Text": "#define il2cpp_codegen_initialize_runtime_metadata_Offset \"0x{0:X}\"",
+    "Target": {
+      "$type": "Generator.OffsetLines.TextLine, Generator",
+      "Section": 0,
+      "Text": "#define UnityEngine_GameObject_ctor_Offset \"0x{0:X}\"",
+      "Name": "UnityEngine.GameObject$$.ctor"
+    }
   }
 ]
