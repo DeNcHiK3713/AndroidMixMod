@@ -91,6 +91,7 @@ namespace il2cpp {
 
     void (*il2cpp_gc_wbarrier_set_field)(Il2CppObject *obj, void **targetAddress, void *object);
 
+    void (*il2cpp_codegen_initialize_runtime_metadata)(uintptr_t *metadataPointer);
 
     struct Il2CppClass **System_String_array_TypeInfo;
     struct Il2CppClass **OSCategory_TypeInfo;
@@ -215,7 +216,7 @@ namespace il2cpp {
 
     void (*SocialToastMgr_AddToast)(SocialToastMgr_o *_this, int blocker, System_String_o *textArg, int toastType, float displayTime, bool playSound);
 
-    void (*Network_Update)(Network_o * _this);
+    void (*UnityEngine_Canvas_SendWillRenderCanvases)();
 
     PegasusShared_Platform_o *(*Network_GetPlatformBuilder)(Network_o *_this);
 
@@ -232,6 +233,35 @@ namespace il2cpp {
     void (*Localization_SetPegLocaleName)(Localization_o *_this, System_String_o *localeName);
     
     BnetRegion (*Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId)();
+    
+    Blizzard_T5_Core_Map_int__Entity__o *(*GameState_GetEntityMap)(GameState_o* _this);
+
+    void (*Entity_HandleEntityChange)(Entity_o* _this, Network_Entity_o* netEntity, Entity_LoadCardData_o* data, bool fromShowEntity);
+
+    struct Il2CppClass **Network_Entity_TypeInfo;
+
+    void (*Network_Entity_ctor)(Network_Entity_o* _this);
+
+    struct Il2CppClass **Entity_LoadCardData_TypeInfo;
+
+    void (*Entity_LoadCardData_ctor)(Entity_LoadCardData_o* _this);
+
+    struct Il2CppClass **System_Collections_Generic_List_Network_Entity_Tag_TypeInfo;
+    struct MethodInfo **Method_System_Collections_Generic_List_Network_Entity_Tag_ctor;
+
+    struct Il2CppClass **System_Collections_Generic_List_Network_Entity_TagList_TypeInfo;
+    struct MethodInfo **Method_System_Collections_Generic_List_Network_Entity_TagList_ctor;
+    
+    void (*System_Collections_Generic_List_object_ctor)(System_Collections_Generic_List_object__o *_this, const MethodInfo *method);
+
+    Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o (*Blizzard_T5_Core_Map_int_object_GetEnumerator)(Blizzard_T5_Core_Map_TKey__TValue__o* _this, const MethodInfo* method);
+    struct MethodInfo **Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator;
+
+    bool (*Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method);
+    struct MethodInfo **Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext;
+
+    void (*Blizzard_T5_Core_Map_Enumerator_int_object_Dispose)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method);
+    struct MethodInfo **Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose;
 };
 
 std::wstring_convert<std::codecvt_utf8_utf16<Il2CppChar>, Il2CppChar> utf16conv;

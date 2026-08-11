@@ -25,6 +25,7 @@
 #include "Includes/Source.h"
 #include <atomic>
 #include <mutex>
+#include <queue>
 
 extern JavaVM *g_vm;
 extern jclass g_mainClazz;
@@ -48,7 +49,6 @@ std::atomic<CardState> signature{ CardState::All };
 std::atomic<DevicePreset> devicePreset{ DevicePreset::Default };
 std::atomic<OSCategory> _os;
 std::atomic<ScreenCategory> _screen;
-std::atomic<bool> copyBattleTagQueued{ false };
 std::atomic<bool> redirectToCNServer{ false };
 
 
@@ -57,9 +57,16 @@ float m_lastEnemyEmoteTime;
 int m_lastPlayerId;
 int m_chainedEnemyEmotes;
 
-std::mutex deviceNameMutex, currentOpponentMutex;
+std::mutex deviceNameMutex, currentOpponentMutex, queueMutex;
+
+std::queue<void(*)()> mainThreadQueue;
 
 void * currentOpponent_gchandle = nullptr;
+
+void RunOnUnityThread(void (*func)()) {
+    std::lock_guard<std::mutex> lock(queueMutex);
+    mainThreadQueue.push(func);
+}
 
 // Do not change or translate the first text unless you know what you are doing
 // Assigning feature numbers is optional. Without it, it will automatically count for you, starting from 0
@@ -266,6 +273,67 @@ TAG_PREMIUM EntityBase_GetPremiumType(EntityBase_o *_this) {
 void Entity_LoadCard(Entity_o *_this, System_String_o *cardId, Entity_LoadCardData_o *data, bool async) {
     _this->fields.m_realTimePremium = static_cast<int>(EntityBase_GetPremiumType(reinterpret_cast<EntityBase_o *>(_this)));
     il2cpp::Entity_LoadCard(_this, cardId, data, async);
+}
+
+void updateAllEntities() {
+    auto gameState = il2cpp::GameState_Get();
+    if (gameState == NULL) {
+        return;
+    }
+
+    auto entityMap = il2cpp::GameState_GetEntityMap(gameState);
+    if (entityMap == NULL) {
+        return;
+    }
+
+    static bool s_Il2CppMethodInitialized;
+    if (!s_Il2CppMethodInitialized) {
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Collections_Generic_List_Network_Entity_TagList_TypeInfo);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_System_Collections_Generic_List_Network_Entity_TagList_ctor);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Entity_LoadCardData_TypeInfo);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Network_Entity_TypeInfo);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose);
+        s_Il2CppMethodInitialized = true;
+    }
+
+    auto tags = reinterpret_cast<System_Collections_Generic_List_Network_Entity_Tag__o *>(il2cpp::il2cpp_object_new(*il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo));
+    il2cpp::System_Collections_Generic_List_object_ctor(reinterpret_cast<System_Collections_Generic_List_object__o *>(tags), *il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
+    
+    auto tagLists = reinterpret_cast<System_Collections_Generic_List_Network_Entity_TagList__o *>(il2cpp::il2cpp_object_new(*il2cpp::System_Collections_Generic_List_Network_Entity_TagList_TypeInfo));
+    il2cpp::System_Collections_Generic_List_object_ctor(reinterpret_cast<System_Collections_Generic_List_object__o *>(tagLists), *il2cpp::Method_System_Collections_Generic_List_Network_Entity_TagList_ctor);
+    
+    auto defTags = reinterpret_cast<System_Collections_Generic_List_Network_Entity_Tag__o *>(il2cpp::il2cpp_object_new(*il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo));
+    il2cpp::System_Collections_Generic_List_object_ctor(reinterpret_cast<System_Collections_Generic_List_object__o *>(defTags), *il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
+
+    auto loadCardData = (Entity_LoadCardData_o *)il2cpp::il2cpp_object_new(*il2cpp::Entity_LoadCardData_TypeInfo);
+    il2cpp::Entity_LoadCardData_ctor(loadCardData);
+    loadCardData->fields.updateActor = true;
+    loadCardData->fields.restartStateSpells = true;
+    loadCardData->fields.fromChangeEntity = true;
+
+    auto enumerator = il2cpp::Blizzard_T5_Core_Map_int_object_GetEnumerator(reinterpret_cast<Blizzard_T5_Core_Map_TKey__TValue__o *>(entityMap), *il2cpp::Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator);
+
+    while (il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext(&enumerator, *il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext)) {
+        auto entity = reinterpret_cast<Entity_o *>(enumerator.fields.current.fields.value);
+
+        if (entity) {
+            auto netEntity = (Network_Entity_o *)il2cpp::il2cpp_object_new(*il2cpp::Network_Entity_TypeInfo);
+            il2cpp::Network_Entity_ctor(netEntity);
+                    
+            netEntity->fields._Tags_k__BackingField = tags;
+            netEntity->fields._TagLists_k__BackingField = tagLists;
+            netEntity->fields._CardID_k__BackingField = entity->fields.m_cardIdInternal;
+            netEntity->fields._DefTags_k__BackingField = defTags;
+
+            il2cpp::Entity_HandleEntityChange(entity, netEntity, loadCardData, false);
+        }
+    }
+
+    il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_Dispose(&enumerator, *il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose);
 }
 
 void UpdateCurrentOpponent() {
@@ -614,13 +682,20 @@ void copyBattleTag() {
     }
 }
 
-void Network_Update(Network_o *_this) {
-    il2cpp::Network_Update(_this);
-    
-    if (copyBattleTagQueued) {
-        copyBattleTagQueued = false;
-        copyBattleTag();
+void UnityEngine_Canvas_SendWillRenderCanvases() {
+    queueMutex.lock();
+    while (!mainThreadQueue.empty()) {
+        auto task = mainThreadQueue.front();
+        mainThreadQueue.pop();
+        queueMutex.unlock();
+
+        task();
+
+        queueMutex.lock();
     }
+    queueMutex.unlock();
+
+    il2cpp::UnityEngine_Canvas_SendWillRenderCanvases();
 }
 
 void simulateDisconnect() {
@@ -713,12 +788,21 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         break;
     case 9:
         golden = static_cast<CardState>(value);
+        if (gameLoaded) {
+            RunOnUnityThread(updateAllEntities);
+        }
         break;
     case 10:
         diamond = static_cast<CardState>(value);
+        if (gameLoaded) {
+            RunOnUnityThread(updateAllEntities);
+        }
         break;
     case 21:
         signature = static_cast<CardState>(value);
+        if (gameLoaded) {
+            RunOnUnityThread(updateAllEntities);
+        }
         break;
     case 11:
         PATCH_SWITCH(targetLibName, NameBanner_Initialize_Patch_Offset, NameBanner_Initialize_Patch_Data, boolean);
@@ -740,7 +824,7 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         break;
     case 22:
         if (gameLoaded) {
-            copyBattleTagQueued = true;
+            RunOnUnityThread(copyBattleTag);
         }
         break;
     case 23:
@@ -817,6 +901,7 @@ void hack_thread() {
     il2cpp::il2cpp_gchandle_new = reinterpret_cast<void *(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
     il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
     il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
+    il2cpp::il2cpp_codegen_initialize_runtime_metadata = reinterpret_cast<void (*)(uintptr_t *metadataPointer)>(getAbsoluteAddress(targetLibName, il2cpp_codegen_initialize_runtime_metadata_Offset));
 
     il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
     il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
@@ -906,6 +991,35 @@ void hack_thread() {
 
     il2cpp::Localization_GetLocaleName = reinterpret_cast<System_String_o * (*)()>(getAbsoluteAddress(targetLibName, Localization_GetLocaleName_Offset));
 
+    il2cpp::GameState_GetEntityMap = reinterpret_cast<Blizzard_T5_Core_Map_int__Entity__o *(*)(GameState_o* _this)>(getAbsoluteAddress(targetLibName, GameState_GetEntityMap_Offset));
+
+    il2cpp::Entity_HandleEntityChange = reinterpret_cast<void (*)(Entity_o* _this, Network_Entity_o* netEntity, Entity_LoadCardData_o* data, bool fromShowEntity)>(getAbsoluteAddress(targetLibName, Entity_HandleEntityChange_Offset));
+
+    il2cpp::Network_Entity_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, Network_Entity_TypeInfo_Offset));
+
+    il2cpp::Network_Entity_ctor = reinterpret_cast<void (*)(Network_Entity_o* _this)>(getAbsoluteAddress(targetLibName, Network_Entity_ctor_Offset));
+
+    il2cpp::Entity_LoadCardData_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, Entity_LoadCardData_TypeInfo_Offset));
+
+    il2cpp::Entity_LoadCardData_ctor = reinterpret_cast<void (*)(Entity_LoadCardData_o* _this)>(getAbsoluteAddress(targetLibName, Entity_LoadCardData_ctor_Offset));
+
+    il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_Network_Entity_Tag_TypeInfo_Offset));
+    il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_System_Collections_Generic_List_Network_Entity_Tag_ctor_Offset));
+
+    il2cpp::System_Collections_Generic_List_Network_Entity_TagList_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_Network_Entity_TagList_TypeInfo_Offset));
+    il2cpp::Method_System_Collections_Generic_List_Network_Entity_TagList_ctor = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_System_Collections_Generic_List_Network_Entity_TagList_ctor_Offset));
+
+    il2cpp::System_Collections_Generic_List_object_ctor = reinterpret_cast<void (*)(System_Collections_Generic_List_object__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_object_ctor_Offset));
+
+    il2cpp::Blizzard_T5_Core_Map_int_object_GetEnumerator = reinterpret_cast<Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o (*)(Blizzard_T5_Core_Map_TKey__TValue__o* _this, const MethodInfo* method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_object_GetEnumerator_Offset));
+    il2cpp::Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator_Offset));
+
+    il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext = reinterpret_cast<bool (*)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext_Offset));
+    il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext_Offset));
+
+    il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_Dispose = reinterpret_cast<void (*)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_Enumerator_int_object_Dispose_Offset));
+    il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose_Offset));
+
     HOOK(targetLibName, HearthstoneApplication_Awake_Offset, HearthstoneApplication_Awake, il2cpp::HearthstoneApplication_Awake);
 
     HOOK(targetLibName, Time_set_timeScale_Offset, Time_set_timeScale, il2cpp::Time_set_timeScale);
@@ -928,7 +1042,7 @@ void hack_thread() {
 
     HOOK(targetLibName, PlayerLeaderboardCard_NotifyMousedOver_Offset, PlayerLeaderboardCard_NotifyMousedOver, il2cpp::PlayerLeaderboardCard_NotifyMousedOver);
 
-    HOOK(targetLibName, Network_Update_Offset, Network_Update, il2cpp::Network_Update);
+    HOOK(targetLibName, UnityEngine_Canvas_SendWillRenderCanvases_Offset, UnityEngine_Canvas_SendWillRenderCanvases, il2cpp::UnityEngine_Canvas_SendWillRenderCanvases);
     HOOK(targetLibName, Network_GetPlatformBuilder_Offset, Network_GetPlatformBuilder, il2cpp::Network_GetPlatformBuilder);
 
     HOOK(targetLibName, UpdateUtils_OpenAppStore_Offset, UpdateUtils_OpenAppStore, il2cpp::UpdateUtils_OpenAppStore);
