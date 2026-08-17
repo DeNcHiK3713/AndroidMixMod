@@ -360,6 +360,13 @@ void UpdateCurrentOpponent() {
 void UpdateCurrentOpponent(int opponentPlayerId) {
     std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
+    static bool s_Il2CppMethodInitialized;
+    if (!s_Il2CppMethodInitialized) {
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item);
+        s_Il2CppMethodInitialized = true;
+    }
+
     if (currentOpponent_gchandle != nullptr) {
         il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
         currentOpponent_gchandle = nullptr;
@@ -380,6 +387,13 @@ void UpdateCurrentOpponent(int opponentPlayerId) {
 }
 
 BnetPlayer_o *GetSelectedOpponent(PlayerLeaderboardCard_o *_this) {
+    static bool s_Il2CppMethodInitialized;
+    if (!s_Il2CppMethodInitialized) {
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey);
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item);
+        s_Il2CppMethodInitialized = true;
+    }
+
     auto opponentPlayerId = il2cpp::EntityBase_GetTag(reinterpret_cast<EntityBase_o *>(_this->fields.m_playerHeroEntity), 30);
     auto gameState = il2cpp::GameState_Get();
     auto playerInfoMap = reinterpret_cast<Blizzard_T5_Core_Map_TKey__TValue__o *>(il2cpp::GameState_GetPlayerInfoMap(gameState));
@@ -433,6 +447,12 @@ void PlayerLeaderboardCard_NotifyMousedOver(PlayerLeaderboardCard_o *_this) {
 }
 
 System_String_o *GetMD5(System_Byte_array *bytes) {
+    static bool s_Il2CppMethodInitialized;
+    if (!s_Il2CppMethodInitialized) {
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Text_StringBuilder_TypeInfo);
+        s_Il2CppMethodInitialized = true;
+    }
+
     auto md5 = il2cpp::System_Security_Cryptography_MD5_Create();
     auto hash = il2cpp::System_Security_Cryptography_HashAlgorithm_ComputeHash((System_Security_Cryptography_HashAlgorithm_o *)md5, bytes);
 
@@ -463,6 +483,12 @@ System_String_o *GetUniqueDeviceID(OSCategory os, ScreenCategory screen, System_
      * guid.fields._d = str; ?
      * il2cpp::System_Guid_ctor(guid, NULL);
     */
+    static bool s_Il2CppMethodInitialized;
+    if (!s_Il2CppMethodInitialized) {
+        il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_String_array_TypeInfo);
+        s_Il2CppMethodInitialized = true;
+    }
+
     auto deviceId = il2cpp::UnityEngine_SystemInfo_get_deviceUniqueIdentifier();
 
     System_String_o * osStr;
