@@ -9,6 +9,28 @@
         il2cpp::il2cpp_gc_wbarrier_set_field((Il2CppObject*)(array), (void**)&(array)->m_Items[index], (void*)(value)); \
     } while (0)
 
+#define INIT_FUNC(name) \
+    il2cpp::name = reinterpret_cast<decltype(il2cpp::name)>(getAbsoluteAddress(targetLibName, name##_Offset));
+
+#define INIT_SYM(name) \
+    il2cpp::name = reinterpret_cast<decltype(il2cpp::name)>(getAbsoluteAddress(targetLibName, OBFUSCATE(#name)));
+
+#define INIT_METADATA(...) \
+    static bool s_Il2CppMethodInitialized; \
+    if (!s_Il2CppMethodInitialized) { \
+        __VA_ARGS__ \
+        s_Il2CppMethodInitialized = true; \
+    }
+
+#define HOOK_FUNC(name) \
+    HOOK(targetLibName, name##_Offset, name, il2cpp::name);
+
+#define PATCH_FUNC(name) \
+    PATCH(targetLibName, name##_Patch_Offset, name##_Patch_Data);
+
+#define PATCH_FUNC_SWITCH(name, boolean) \
+    PATCH_SWITCH(targetLibName, name##_Patch_Offset, name##_Patch_Data, (boolean));
+
 #if _MSC_VER
 typedef wchar_t Il2CppChar;
 #elif __has_feature(cxx_unicode_literals)
