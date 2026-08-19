@@ -286,8 +286,7 @@ void updateAllEntities() {
         return;
     }
 
-    static bool s_Il2CppMethodInitialized;
-    if (!s_Il2CppMethodInitialized) {
+    INIT_METADATA(
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Collections_Generic_List_Network_Entity_TagList_TypeInfo);
@@ -297,8 +296,7 @@ void updateAllEntities() {
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose);
-        s_Il2CppMethodInitialized = true;
-    }
+    )
 
     auto tags = reinterpret_cast<System_Collections_Generic_List_Network_Entity_Tag__o *>(il2cpp::il2cpp_object_new(*il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo));
     il2cpp::System_Collections_Generic_List_object_ctor(reinterpret_cast<System_Collections_Generic_List_object__o *>(tags), *il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
@@ -360,12 +358,10 @@ void UpdateCurrentOpponent() {
 void UpdateCurrentOpponent(int opponentPlayerId) {
     std::lock_guard<std::mutex> lock(currentOpponentMutex);
 
-    static bool s_Il2CppMethodInitialized;
-    if (!s_Il2CppMethodInitialized) {
+    INIT_METADATA(
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item);
-        s_Il2CppMethodInitialized = true;
-    }
+    )
 
     if (currentOpponent_gchandle != nullptr) {
         il2cpp::il2cpp_gchandle_free(currentOpponent_gchandle);
@@ -387,12 +383,10 @@ void UpdateCurrentOpponent(int opponentPlayerId) {
 }
 
 BnetPlayer_o *GetSelectedOpponent(PlayerLeaderboardCard_o *_this) {
-    static bool s_Il2CppMethodInitialized;
-    if (!s_Il2CppMethodInitialized) {
+    INIT_METADATA(
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey);
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item);
-        s_Il2CppMethodInitialized = true;
-    }
+    )
 
     auto opponentPlayerId = il2cpp::EntityBase_GetTag(reinterpret_cast<EntityBase_o *>(_this->fields.m_playerHeroEntity), 30);
     auto gameState = il2cpp::GameState_Get();
@@ -447,11 +441,9 @@ void PlayerLeaderboardCard_NotifyMousedOver(PlayerLeaderboardCard_o *_this) {
 }
 
 System_String_o *GetMD5(System_Byte_array *bytes) {
-    static bool s_Il2CppMethodInitialized;
-    if (!s_Il2CppMethodInitialized) {
+    INIT_METADATA(
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_Text_StringBuilder_TypeInfo);
-        s_Il2CppMethodInitialized = true;
-    }
+    )
 
     auto md5 = il2cpp::System_Security_Cryptography_MD5_Create();
     auto hash = il2cpp::System_Security_Cryptography_HashAlgorithm_ComputeHash((System_Security_Cryptography_HashAlgorithm_o *)md5, bytes);
@@ -483,11 +475,9 @@ System_String_o *GetUniqueDeviceID(OSCategory os, ScreenCategory screen, System_
      * guid.fields._d = str; ?
      * il2cpp::System_Guid_ctor(guid, NULL);
     */
-    static bool s_Il2CppMethodInitialized;
-    if (!s_Il2CppMethodInitialized) {
+    INIT_METADATA(
         il2cpp::il2cpp_codegen_initialize_runtime_metadata((uintptr_t *)il2cpp::System_String_array_TypeInfo);
-        s_Il2CppMethodInitialized = true;
-    }
+    )
 
     auto deviceId = il2cpp::UnityEngine_SystemInfo_get_deviceUniqueIdentifier();
 
@@ -789,25 +779,25 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         }
         break;
     case 2:
-        PATCH_SWITCH(targetLibName, MulliganManager_HandleGameStart_Patch_Offset, MulliganManager_HandleGameStart_Patch_Data, boolean);
+        PATCH_FUNC_SWITCH(MulliganManager_HandleGameStart, boolean);
         break;
     case 3:
-        PATCH_SWITCH(targetLibName, TB_BaconShop_HandleGameOverWithTiming_Patch_Offset, TB_BaconShop_HandleGameOverWithTiming_Patch_Data, boolean);
-        PATCH_SWITCH(targetLibName, TB_BaconShop_PlayBobLineWithoutText_Patch_Offset, TB_BaconShop_PlayBobLineWithoutText_Patch_Data, boolean);
+        PATCH_FUNC_SWITCH(TB_BaconShop_HandleGameOverWithTiming, boolean);
+        PATCH_FUNC_SWITCH(TB_BaconShop_PlayBobLineWithoutText, boolean);
         break;
     case 4:
-        PATCH_SWITCH(targetLibName, EmoteHandler_EmoteSpamBlocked_Patch_Offset, EmoteHandler_EmoteSpamBlocked_Patch_Data, boolean);
+        PATCH_FUNC_SWITCH(EmoteHandler_EmoteSpamBlocked, boolean);
         break;
     case 5:
-        PATCH_SWITCH(targetLibName, EmoteHandler_HandleInput_Patch_Offset, EmoteHandler_HandleInput_Patch_Data, boolean);
+        PATCH_FUNC_SWITCH(EmoteHandler_HandleInput, boolean);
         break;
     case 6:
         emoteSpamBlocker = boolean;
-        PATCH_SWITCH(targetLibName, EnemyEmoteHandler_Awake_Patch_Offset, EnemyEmoteHandler_Awake_Patch_Data, emoteSpamBlocker && emotesBeforeBlock == 0);
+        PATCH_FUNC_SWITCH(EnemyEmoteHandler_Awake, emoteSpamBlocker && emotesBeforeBlock == 0);
         break;
     case 7:
         emotesBeforeBlock = value;
-        PATCH_SWITCH(targetLibName, EnemyEmoteHandler_Awake_Patch_Offset, EnemyEmoteHandler_Awake_Patch_Data, emoteSpamBlocker && emotesBeforeBlock == 0);
+        PATCH_FUNC_SWITCH(EnemyEmoteHandler_Awake, emoteSpamBlocker && emotesBeforeBlock == 0);
         break;
     case 8:
         disableThinkEmotes = boolean;
@@ -831,8 +821,8 @@ void Changes(JNIEnv *env, jclass clazz, jobject obj, jint featNum, jstring featN
         }
         break;
     case 11:
-        PATCH_SWITCH(targetLibName, NameBanner_Initialize_Patch_Offset, NameBanner_Initialize_Patch_Data, boolean);
-        PATCH_SWITCH(targetLibName, NameBanner_UpdateMedalWhenReady_Patch_Offset, NameBanner_UpdateMedalWhenReady_Patch_Data, boolean);
+        PATCH_FUNC_SWITCH(NameBanner_Initialize, boolean);
+        PATCH_FUNC_SWITCH(NameBanner_UpdateMedalWhenReady, boolean);
         break;
     case 16:
         devicePreset = static_cast<DevicePreset>(value);
@@ -920,169 +910,157 @@ void hack_thread() {
         sleep(1); // Wait for target lib be loaded.
     }
 
-    il2cpp::il2cpp_object_new = reinterpret_cast<Il2CppObject * (*)(Il2CppClass * klass)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_object_new")));
-    il2cpp::il2cpp_domain_get = reinterpret_cast<void *(*)()>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_domain_get")));
-    il2cpp::il2cpp_thread_attach = reinterpret_cast<void *(*)(void *domain)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_attach")));
-    il2cpp::il2cpp_thread_detach = reinterpret_cast<void (*)(void *thread)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_thread_detach")));
-    il2cpp::il2cpp_gchandle_new = reinterpret_cast<void *(*)(void *object, bool weak)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_new")));
-    il2cpp::il2cpp_gchandle_free = reinterpret_cast<void (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_free")));
-    il2cpp::il2cpp_gchandle_get_target = reinterpret_cast<Il2CppObject* (*)(void * gchandle)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gchandle_get_target")));
-    il2cpp::il2cpp_codegen_initialize_runtime_metadata = reinterpret_cast<void (*)(uintptr_t *metadataPointer)>(getAbsoluteAddress(targetLibName, il2cpp_codegen_initialize_runtime_metadata_Offset));
+    INIT_SYM(il2cpp_object_new);
+    INIT_SYM(il2cpp_domain_get);
+    INIT_SYM(il2cpp_thread_attach);
+    INIT_SYM(il2cpp_thread_detach);
+    INIT_SYM(il2cpp_gchandle_new);
+    INIT_SYM(il2cpp_gchandle_free);
+    INIT_SYM(il2cpp_gchandle_get_target);
+    INIT_FUNC(il2cpp_codegen_initialize_runtime_metadata);
 
-    il2cpp::il2cpp_string_new = reinterpret_cast<System_String_o * (*)(const char *text)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new")));
-    il2cpp::il2cpp_string_new_utf16 = reinterpret_cast<System_String_o * (*)(const Il2CppChar * text, int len)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_string_new_utf16")));
+    INIT_SYM(il2cpp_string_new);
+    INIT_SYM(il2cpp_string_new_utf16);
 
-    il2cpp::il2cpp_array_new_specific = reinterpret_cast<void *(*)(Il2CppClass * klass, size_t length)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_array_new_specific")));
-    il2cpp::il2cpp_gc_wbarrier_set_field = reinterpret_cast<void (*)(Il2CppObject *obj, void **targetAddress, void *object)>(getAbsoluteAddress(targetLibName, OBFUSCATE("il2cpp_gc_wbarrier_set_field")));
+    INIT_SYM(il2cpp_array_new_specific);
+    INIT_SYM(il2cpp_gc_wbarrier_set_field);
 
-    il2cpp::System_String_Concat = reinterpret_cast<System_String_o* (*)(System_String_array* values)>(getAbsoluteAddress(targetLibName, System_String_Concat_Offset));
+    INIT_FUNC(System_String_Concat);
 
-    il2cpp::System_String_array_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_String_array_TypeInfo_Offset));
-    il2cpp::OSCategory_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, OSCategory_TypeInfo_Offset));
-    il2cpp::ScreenCategory_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, ScreenCategory_TypeInfo_Offset));
+    INIT_FUNC(System_String_array_TypeInfo);
+    INIT_FUNC(OSCategory_TypeInfo);
+    INIT_FUNC(ScreenCategory_TypeInfo);
 
-    il2cpp::UnityEngine_SystemInfo_get_deviceUniqueIdentifier = reinterpret_cast<System_String_o * (*)()>(getAbsoluteAddress(targetLibName, UnityEngine_SystemInfo_get_deviceUniqueIdentifier_Offset));
+    INIT_FUNC(UnityEngine_SystemInfo_get_deviceUniqueIdentifier);
 
-    il2cpp::System_Text_StringBuilder_ctor = reinterpret_cast<void (*)(System_Text_StringBuilder_o * _this)>(getAbsoluteAddress(targetLibName, System_Text_StringBuilder_ctor_Offset));
+    INIT_FUNC(System_Text_StringBuilder_ctor);
 
-    il2cpp::Time_get_timeScale = reinterpret_cast<float (*)()>(getAbsoluteAddress(targetLibName, Time_get_timeScale_Offset));
+    INIT_FUNC(Time_get_timeScale);
 
-    il2cpp::Crypto_SHA1_Calc = reinterpret_cast<System_String_o * (*)(System_String_o * message)>(getAbsoluteAddress(targetLibName, Crypto_SHA1_Calc_Offset));
+    INIT_FUNC(Crypto_SHA1_Calc);
 
-    il2cpp::System_Security_Cryptography_MD5_Create = reinterpret_cast<System_Security_Cryptography_MD5_o * (*)()>(getAbsoluteAddress(targetLibName, System_Security_Cryptography_MD5_Create_Offset));
-    il2cpp::System_Security_Cryptography_HashAlgorithm_ComputeHash = reinterpret_cast<System_Byte_array * (*)(System_Security_Cryptography_HashAlgorithm_o * _this, System_Byte_array * buffer)>(getAbsoluteAddress(targetLibName, System_Security_Cryptography_HashAlgorithm_ComputeHash_Offset));
+    INIT_FUNC(System_Security_Cryptography_MD5_Create);
+    INIT_FUNC(System_Security_Cryptography_HashAlgorithm_ComputeHash);
 
-    il2cpp::System_Text_StringBuilder_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_Text_StringBuilder_TypeInfo_Offset));
-    il2cpp::System_Text_StringBuilder_AppendString = reinterpret_cast<System_Text_StringBuilder_o * (*)(System_Text_StringBuilder_o * _this, System_String_o * value)>(getAbsoluteAddress(targetLibName, System_Text_StringBuilder_AppendString_Offset));
+    INIT_FUNC(System_Text_StringBuilder_TypeInfo);
+    INIT_FUNC(System_Text_StringBuilder_AppendString);
 
-    il2cpp::System_Byte_ToStringFormat = reinterpret_cast<System_String_o * (*)(uint8_t * _this, System_String_o * format)>(getAbsoluteAddress(targetLibName, System_Byte_ToStringFormat_Offset));
+    INIT_FUNC(System_Byte_ToStringFormat);
 
-    il2cpp::System_Guid_ctor = reinterpret_cast<void (*)(System_Guid_o _this, System_String_o * g)>(getAbsoluteAddress(targetLibName, System_Guid_ctor_Offset));
+    INIT_FUNC(System_Guid_ctor);
 
-    il2cpp::System_Text_Encoding_get_Default = reinterpret_cast<System_Text_Encoding_o * (*)()>(getAbsoluteAddress(targetLibName, System_Text_Encoding_get_Default_Offset));
-    il2cpp::System_Text_Encoding_GetBytes = reinterpret_cast<System_Byte_array * (*)(System_Text_Encoding_o * _this, System_String_o * str)>(getAbsoluteAddress(targetLibName, System_Text_Encoding_GetBytes_Offset));
+    INIT_FUNC(System_Text_Encoding_get_Default);
+    INIT_FUNC(System_Text_Encoding_GetBytes);
 
-    il2cpp::System_String_ToUpper = reinterpret_cast<System_String_o * (*)(System_String_o * _this)>(getAbsoluteAddress(targetLibName, System_String_ToUpper_Offset));
+    INIT_FUNC(System_String_ToUpper);
 
-    il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey_Offset));
-    il2cpp::Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item_Offset));
+    INIT_FUNC(Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_ContainsKey);
+    INIT_FUNC(Method_Blizzard_T5_Core_Map_int_SharedPlayerInfo_get_Item);
 
-    il2cpp::EnemyEmoteHandler_Get = reinterpret_cast<EnemyEmoteHandler_o * (*)()>(getAbsoluteAddress(targetLibName, EnemyEmoteHandler_Get_Offset));
+    INIT_FUNC(EnemyEmoteHandler_Get);
 
-    il2cpp::Blizzard_T5_Core_Map_int_bool_set_Item = reinterpret_cast<void (*)(Blizzard_T5_Core_Map_int__bool__o * __this, int key, bool value)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_bool_set_Item_Offset));
+    INIT_FUNC(Blizzard_T5_Core_Map_int_bool_set_Item);
 
-    il2cpp::UnityEngine_Time_get_time = reinterpret_cast<float (*)()>(getAbsoluteAddress(targetLibName, UnityEngine_Time_get_time_Offset));
+    INIT_FUNC(UnityEngine_Time_get_time);
 
-    il2cpp::GameMgr_Get = reinterpret_cast<GameMgr_o * (*)()>(getAbsoluteAddress(targetLibName, GameMgr_Get_Offset));
-    il2cpp::GameMgr_IsBattlegrounds = reinterpret_cast<bool (*)(GameMgr_o * _this)>(getAbsoluteAddress(targetLibName, GameMgr_IsBattlegrounds_Offset));
+    INIT_FUNC(GameMgr_Get);
+    INIT_FUNC(GameMgr_IsBattlegrounds);
 
-    il2cpp::GameState_Get = reinterpret_cast<GameState_o * (*)()>(getAbsoluteAddress(targetLibName, GameState_Get_Offset));
-    il2cpp::GameState_IsGameCreatedOrCreating = reinterpret_cast<bool (*)(GameState_o * _this)>(getAbsoluteAddress(targetLibName, GameState_IsGameCreatedOrCreating_Offset));
-    il2cpp::GameState_GetOpposingSidePlayer = reinterpret_cast<Player_o * (*)(GameState_o * _this)>(getAbsoluteAddress(targetLibName, GameState_GetOpposingSidePlayer_Offset));
-    il2cpp::GameState_GetPlayerInfoMap = reinterpret_cast<Blizzard_T5_Core_Map_int__SharedPlayerInfo__o * (*)(GameState_o * _this)>(getAbsoluteAddress(targetLibName, GameState_GetPlayerInfoMap_Offset));
+    INIT_FUNC(GameState_Get);
+    INIT_FUNC(GameState_IsGameCreatedOrCreating);
+    INIT_FUNC(GameState_GetOpposingSidePlayer);
+    INIT_FUNC(GameState_GetPlayerInfoMap);
 
-    il2cpp::Blizzard_T5_Core_Map_int_object_ContainsKey = reinterpret_cast<bool (*)(Blizzard_T5_Core_Map_TKey__TValue__o * _this, int key, const MethodInfo * method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_object_ContainsKey_Offset));
-    il2cpp::Blizzard_T5_Core_Map_int_object_get_Item = reinterpret_cast<Il2CppObject * (*)(Blizzard_T5_Core_Map_TKey__TValue__o * _this, int key, const MethodInfo * method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_object_get_Item_Offset));
+    INIT_FUNC(Blizzard_T5_Core_Map_int_object_ContainsKey);
+    INIT_FUNC(Blizzard_T5_Core_Map_int_object_get_Item);
 
-    il2cpp::EntityBase_HasTag = reinterpret_cast<bool (*)(EntityBase_o * _this, int tag)>(getAbsoluteAddress(targetLibName, EntityBase_HasTag_Offset));
-    il2cpp::EntityBase_GetControllerId = reinterpret_cast<int (*)(EntityBase_o * _this)>(getAbsoluteAddress(targetLibName, EntityBase_GetControllerId_Offset));
-    il2cpp::GameState_GetPlayer = reinterpret_cast<Player_o * (*)(GameState_o *_this, int id)>(getAbsoluteAddress(targetLibName, GameState_GetPlayer_Offset));
-    il2cpp::Player_IsFriendlySide = reinterpret_cast<bool (*)(Player_o *_this)>(getAbsoluteAddress(targetLibName, Player_IsFriendlySide_Offset));
+    INIT_FUNC(EntityBase_HasTag);
+    INIT_FUNC(EntityBase_GetControllerId);
+    INIT_FUNC(GameState_GetPlayer);
+    INIT_FUNC(Player_IsFriendlySide);
 
-    il2cpp::System_String_IsNullOrEmpty = reinterpret_cast<bool (*)(System_String_o * value)>(getAbsoluteAddress(targetLibName, System_String_IsNullOrEmpty_Offset));
+    INIT_FUNC(System_String_IsNullOrEmpty);
 
-    il2cpp::Network_Get = reinterpret_cast<Network_o * (*)()>(getAbsoluteAddress(targetLibName, Network_Get_Offset));
-    il2cpp::Network_SimulateUncleanDisconnectFromGameServer = reinterpret_cast<void (*)(Network_o * _this)>(getAbsoluteAddress(targetLibName, Network_SimulateUncleanDisconnectFromGameServer_Offset));
+    INIT_FUNC(Network_Get);
+    INIT_FUNC(Network_SimulateUncleanDisconnectFromGameServer);
 
-    il2cpp::BnetPresenceMgr_Get = reinterpret_cast<BnetPresenceMgr_o * (*)()>(getAbsoluteAddress(targetLibName, BnetPresenceMgr_Get_Offset));
-    il2cpp::BnetPresenceMgr_GetPlayer = reinterpret_cast<BnetPlayer_o * (*)(BnetPresenceMgr_o * _this, Blizzard_GameService_SDK_Client_Integration_BnetGameAccountId_o * id)>(getAbsoluteAddress(targetLibName, BnetPresenceMgr_GetPlayer_Offset));
-    il2cpp::BnetPlayer_GetBattleTag = reinterpret_cast<BnetBattleTag_o * (*)(BnetPlayer_o * _this)>(getAbsoluteAddress(targetLibName, BnetPlayer_GetBattleTag_Offset));
-    il2cpp::BnetBattleTag_GetString = reinterpret_cast<System_String_o * (*)(BnetBattleTag_o * _this)>(getAbsoluteAddress(targetLibName, BnetBattleTag_GetString_Offset));
+    INIT_FUNC(BnetPresenceMgr_Get);
+    INIT_FUNC(BnetPresenceMgr_GetPlayer);
+    INIT_FUNC(BnetPlayer_GetBattleTag);
+    INIT_FUNC(BnetBattleTag_GetString);
 
-    il2cpp::ClipboardUtils_CopyToClipboard = reinterpret_cast<void (*)(System_String_o * copyText)>(getAbsoluteAddress(targetLibName, ClipboardUtils_CopyToClipboard_Offset));
+    INIT_FUNC(ClipboardUtils_CopyToClipboard);
 
-    il2cpp::UIStatus_Get = reinterpret_cast<UIStatus_o * (*)()>(getAbsoluteAddress(targetLibName, UIStatus_Get_Offset));
-    il2cpp::UIStatus_AddInfo = reinterpret_cast<void (*)(UIStatus_o * _this, System_String_o * message)>(getAbsoluteAddress(targetLibName, UIStatus_AddInfo_Offset));
+    INIT_FUNC(UIStatus_Get);
+    INIT_FUNC(UIStatus_AddInfo);
 
-    il2cpp::HistoryManager_Get = reinterpret_cast<HistoryManager_o * (*)()>(getAbsoluteAddress(targetLibName, HistoryManager_Get_Offset));
-    il2cpp::HistoryManager_GetCurrentBigCard = reinterpret_cast<PlayerLeaderboardCard_o * (*)(HistoryManager_o * _this)>(getAbsoluteAddress(targetLibName, HistoryManager_GetCurrentBigCard_Offset));
+    INIT_FUNC(HistoryManager_Get);
+    INIT_FUNC(HistoryManager_GetCurrentBigCard);
 
-    il2cpp::EntityBase_GetTag = reinterpret_cast<int (*)(EntityBase_o * _this, int tag)>(getAbsoluteAddress(targetLibName, EntityBase_GetTag_Offset));
+    INIT_FUNC(EntityBase_GetTag);
 
-    il2cpp::System_Xml_XmlConvert_ToGuid = reinterpret_cast<System_Guid_o(*)(System_String_o * s)>(getAbsoluteAddress(targetLibName, System_Xml_XmlConvert_ToGuid_Offset));
+    INIT_FUNC(System_Xml_XmlConvert_ToGuid);
 
-    il2cpp::System_Guid_ToString = reinterpret_cast<System_String_o * (*)(System_Guid_o * _this)>(getAbsoluteAddress(targetLibName, System_Guid_ToString_Offset));
+    INIT_FUNC(System_Guid_ToString);
 
-    il2cpp::UnityEngine_Application_OpenURL = reinterpret_cast<void (*)(System_String_o * url)>(getAbsoluteAddress(targetLibName, UnityEngine_Application_OpenURL_Offset));
+    INIT_FUNC(UnityEngine_Application_OpenURL);
 
-    il2cpp::Localization_GetLocaleName = reinterpret_cast<System_String_o * (*)()>(getAbsoluteAddress(targetLibName, Localization_GetLocaleName_Offset));
+    INIT_FUNC(Localization_GetLocaleName);
 
-    il2cpp::GameState_GetEntityMap = reinterpret_cast<Blizzard_T5_Core_Map_int__Entity__o *(*)(GameState_o* _this)>(getAbsoluteAddress(targetLibName, GameState_GetEntityMap_Offset));
+    INIT_FUNC(GameState_GetEntityMap);
 
-    il2cpp::Entity_HandleEntityChange = reinterpret_cast<void (*)(Entity_o* _this, Network_Entity_o* netEntity, Entity_LoadCardData_o* data, bool fromShowEntity)>(getAbsoluteAddress(targetLibName, Entity_HandleEntityChange_Offset));
+    INIT_FUNC(Entity_HandleEntityChange);
 
-    il2cpp::Network_Entity_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, Network_Entity_TypeInfo_Offset));
+    INIT_FUNC(Network_Entity_TypeInfo);
 
-    il2cpp::Network_Entity_ctor = reinterpret_cast<void (*)(Network_Entity_o* _this)>(getAbsoluteAddress(targetLibName, Network_Entity_ctor_Offset));
+    INIT_FUNC(Network_Entity_ctor);
 
-    il2cpp::Entity_LoadCardData_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, Entity_LoadCardData_TypeInfo_Offset));
+    INIT_FUNC(Entity_LoadCardData_TypeInfo);
 
-    il2cpp::Entity_LoadCardData_ctor = reinterpret_cast<void (*)(Entity_LoadCardData_o* _this)>(getAbsoluteAddress(targetLibName, Entity_LoadCardData_ctor_Offset));
+    INIT_FUNC(Entity_LoadCardData_ctor);
 
-    il2cpp::System_Collections_Generic_List_Network_Entity_Tag_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_Network_Entity_Tag_TypeInfo_Offset));
-    il2cpp::Method_System_Collections_Generic_List_Network_Entity_Tag_ctor = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_System_Collections_Generic_List_Network_Entity_Tag_ctor_Offset));
+    INIT_FUNC(System_Collections_Generic_List_Network_Entity_Tag_TypeInfo);
+    INIT_FUNC(Method_System_Collections_Generic_List_Network_Entity_Tag_ctor);
 
-    il2cpp::System_Collections_Generic_List_Network_Entity_TagList_TypeInfo = reinterpret_cast<struct Il2CppClass **>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_Network_Entity_TagList_TypeInfo_Offset));
-    il2cpp::Method_System_Collections_Generic_List_Network_Entity_TagList_ctor = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_System_Collections_Generic_List_Network_Entity_TagList_ctor_Offset));
+    INIT_FUNC(System_Collections_Generic_List_Network_Entity_TagList_TypeInfo);
+    INIT_FUNC(Method_System_Collections_Generic_List_Network_Entity_TagList_ctor);
 
-    il2cpp::System_Collections_Generic_List_object_ctor = reinterpret_cast<void (*)(System_Collections_Generic_List_object__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, System_Collections_Generic_List_object_ctor_Offset));
+    INIT_FUNC(System_Collections_Generic_List_object_ctor);
 
-    il2cpp::Blizzard_T5_Core_Map_int_object_GetEnumerator = reinterpret_cast<Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o (*)(Blizzard_T5_Core_Map_TKey__TValue__o* _this, const MethodInfo* method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_int_object_GetEnumerator_Offset));
-    il2cpp::Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator_Offset));
+    INIT_FUNC(Blizzard_T5_Core_Map_int_object_GetEnumerator);
+    INIT_FUNC(Method_Blizzard_T5_Core_Map_int_Entity_GetEnumerator);
 
-    il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext = reinterpret_cast<bool (*)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext_Offset));
-    il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext_Offset));
+    INIT_FUNC(Blizzard_T5_Core_Map_Enumerator_int_object_MoveNext);
+    INIT_FUNC(Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_MoveNext);
 
-    il2cpp::Blizzard_T5_Core_Map_Enumerator_int_object_Dispose = reinterpret_cast<void (*)(Blizzard_T5_Core_Map_Enumerator_TKey__TValue__o *_this, const MethodInfo *method)>(getAbsoluteAddress(targetLibName, Blizzard_T5_Core_Map_Enumerator_int_object_Dispose_Offset));
-    il2cpp::Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose = reinterpret_cast<struct MethodInfo **>(getAbsoluteAddress(targetLibName, Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose_Offset));
+    INIT_FUNC(Blizzard_T5_Core_Map_Enumerator_int_object_Dispose);
+    INIT_FUNC(Method_Blizzard_T5_Core_Map_Enumerator_int_Entity_Dispose);
 
-    HOOK(targetLibName, HearthstoneApplication_Awake_Offset, HearthstoneApplication_Awake, il2cpp::HearthstoneApplication_Awake);
+    HOOK_FUNC(HearthstoneApplication_Awake);
+    HOOK_FUNC(Time_set_timeScale);
+    HOOK_FUNC(GameMgr_OnGameSetup);
+    HOOK_FUNC(GameMgr_OnGameCanceled);
+    HOOK_FUNC(GameMgr_OnGameEnded);
+    HOOK_FUNC(SocialToastMgr_AddToast);
+    HOOK_FUNC(RemoteActionHandler_CanReceiveEnemyEmote);
+    HOOK_FUNC(Entity_LoadCard);
+    HOOK_FUNC(EntityBase_GetPremiumType);
+    HOOK_FUNC(Gameplay_OnCreateGame);
+    HOOK_FUNC(PlayerLeaderboardManager_SetNextOpponent);
+    HOOK_FUNC(PlayerLeaderboardManager_SetCurrentOpponent);
+    HOOK_FUNC(PlayerLeaderboardCard_NotifyMousedOver);
+    HOOK_FUNC(UnityEngine_Canvas_SendWillRenderCanvases);
+    HOOK_FUNC(Network_GetPlatformBuilder);
+    HOOK_FUNC(UpdateUtils_OpenAppStore);
+    HOOK_FUNC(Localization_SetPegLocaleName);
 
-    HOOK(targetLibName, Time_set_timeScale_Offset, Time_set_timeScale, il2cpp::Time_set_timeScale);
+    PATCH_FUNC(MatchingQueueTab_Update);
+    PATCH_FUNC(ThinkEmoteManager_Update);
+    PATCH_FUNC(PlatformSettings_EmulateMobileDevice);
 
-    HOOK(targetLibName, GameMgr_OnGameSetup_Offset, GameMgr_OnGameSetup, il2cpp::GameMgr_OnGameSetup);
-    HOOK(targetLibName, GameMgr_OnGameCanceled_Offset, GameMgr_OnGameCanceled, il2cpp::GameMgr_OnGameCanceled);
-    HOOK(targetLibName, GameMgr_OnGameEnded_Offset, GameMgr_OnGameEnded, il2cpp::GameMgr_OnGameEnded);
+    HOOK_FUNC(ThinkEmoteManager_Update);
+    HOOK_FUNC(Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId);
 
-    HOOK(targetLibName, SocialToastMgr_AddToast_Offset, SocialToastMgr_AddToast, il2cpp::SocialToastMgr_AddToast);
-
-    HOOK(targetLibName, RemoteActionHandler_CanReceiveEnemyEmote_Offset, RemoteActionHandler_CanReceiveEnemyEmote, il2cpp::RemoteActionHandler_CanReceiveEnemyEmote);
-
-    HOOK(targetLibName, Entity_LoadCard_Offset, Entity_LoadCard, il2cpp::Entity_LoadCard);
-    HOOK(targetLibName, EntityBase_GetPremiumType_Offset, EntityBase_GetPremiumType, il2cpp::EntityBase_GetPremiumType);
-
-    HOOK(targetLibName, Gameplay_OnCreateGame_Offset, Gameplay_OnCreateGame, il2cpp::Gameplay_OnCreateGame);
-
-    HOOK(targetLibName, PlayerLeaderboardManager_SetNextOpponent_Offset, PlayerLeaderboardManager_SetNextOpponent, il2cpp::PlayerLeaderboardManager_SetNextOpponent);
-    HOOK(targetLibName, PlayerLeaderboardManager_SetCurrentOpponent_Offset, PlayerLeaderboardManager_SetCurrentOpponent, il2cpp::PlayerLeaderboardManager_SetCurrentOpponent);
-
-    HOOK(targetLibName, PlayerLeaderboardCard_NotifyMousedOver_Offset, PlayerLeaderboardCard_NotifyMousedOver, il2cpp::PlayerLeaderboardCard_NotifyMousedOver);
-
-    HOOK(targetLibName, UnityEngine_Canvas_SendWillRenderCanvases_Offset, UnityEngine_Canvas_SendWillRenderCanvases, il2cpp::UnityEngine_Canvas_SendWillRenderCanvases);
-    HOOK(targetLibName, Network_GetPlatformBuilder_Offset, Network_GetPlatformBuilder, il2cpp::Network_GetPlatformBuilder);
-
-    HOOK(targetLibName, UpdateUtils_OpenAppStore_Offset, UpdateUtils_OpenAppStore, il2cpp::UpdateUtils_OpenAppStore);
-
-    HOOK(targetLibName, Localization_SetPegLocaleName_Offset, Localization_SetPegLocaleName, il2cpp::Localization_SetPegLocaleName);
-
-    PATCH(targetLibName, MatchingQueueTab_Update_Patch_Offset, MatchingQueueTab_Update_Patch_Data);
-    PATCH(targetLibName, ThinkEmoteManager_Update_Patch_Offset, ThinkEmoteManager_Update_Patch_Data);
-    PATCH(targetLibName, PlatformSettings_EmulateMobileDevice_Patch_Offset, PlatformSettings_EmulateMobileDevice_Patch_Data);
-
-    HOOK(targetLibName, ThinkEmoteManager_Update_Offset, ThinkEmoteManager_Update, il2cpp::ThinkEmoteManager_Update);
-    
-    HOOK(targetLibName, Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId_Offset, Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId, il2cpp::Hearthstone_Devices_DeviceLocaleHelper_GetCurrentRegionId);
-    
     LOGI(OBFUSCATE("Done"));
 }
 
