@@ -63,7 +63,7 @@ jobs:
       - name: Get apkmd latest release info
         if: ${{ !github.event.inputs.override_apk_url }}
         run: |
-          curl --silent https://api.github.com/repos/tanishqmanuja/apkmirror-downloader/releases/latest >> ${{ runner.temp }}/apkmd_release_info.json
+          curl --silent https://api.github.com/repos/DeNcHiK3713/apkmirror-downloader/releases/latest >> ${{ runner.temp }}/apkmd_release_info.json
           echo "apkmd_asset_id=$(jq -r '.assets[] | select(.name == "apkmd") | .id' ${{ runner.temp }}/apkmd_release_info.json)" >> $GITHUB_ENV
 
       - name: Cache apkmd
